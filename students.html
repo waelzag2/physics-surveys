@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بوابة استبانات الطلاب والطالبات — برنامج الفيزياء — برنامج الفيزياء بالقنفذة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0B2545;
+  --ink-2: #123163;
+  --teal: #12776B;
+  --teal-light: #E8F5F3;
+  --gold: #B08945;
+  --gold-light: #FBF5E8;
+  --coral: #D64545;
+  --coral-light: #FDECEC;
+  --bg: #F0F4F8;
+  --card: #FFFFFF;
+  --border: #D9E2EC;
+  --text-muted: #627D98;
+  --accent: #12776B;
+  --radius: 12px;
+  --shadow: 0 4px 16px rgba(11, 37, 69, 0.08);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Tajawal', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+.top-bar {
+  background: linear-gradient(135deg, var(--ink), #0e3866 60%, var(--teal));
+  color: #fff;
+  padding: 16px 24px;
+  box-shadow: 0 4px 20px rgba(11,37,69,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.top-bar-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.14);
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+.brand-text h1 {
+  font-family: 'Cairo', sans-serif;
+  font-size: clamp(15px, 2vw, 20px);
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.3;
+}
+.brand-text p {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.85);
+}
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.btn {
+  all: unset;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.btn-outline-light {
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+.btn-outline-light:hover, .btn-outline-light.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+.btn-primary {
+  background: var(--teal);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(18,119,107,0.25);
+}
+.btn-primary:hover {
+  background: #0e5e54;
+  transform: translateY(-1px);
+}
+.btn-gold {
+  background: var(--gold);
+  color: #fff;
+}
+.btn-gold:hover {
+  background: #967234;
+}
+.btn-danger {
+  background: var(--coral);
+  color: #fff;
+}
+
+/* Schedule & Countdown Banner */
+.schedule-banner {
+  max-width: 1120px;
+  margin: 16px auto 0;
+  padding: 0 16px;
+}
+.schedule-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  box-shadow: var(--shadow);
+  border-right: 6px solid var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.schedule-card.status-open { border-right-color: var(--teal); background: linear-gradient(90deg, #fff, #F4FBF9); }
+.schedule-card.status-upcoming { border-right-color: var(--gold); background: linear-gradient(90deg, #fff, #FDF9F0); }
+.schedule-card.status-closed { border-right-color: var(--coral); background: linear-gradient(90deg, #fff, #FEF5F5); }
+
+.sched-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 13.5px;
+  font-weight: 800;
+  padding: 3px 12px;
+  border-radius: 999px;
+  width: fit-content;
+}
+.status-open .status-badge { background: var(--teal-light); color: var(--teal); }
+.status-upcoming .status-badge { background: var(--gold-light); color: #8c6727; }
+.status-closed .status-badge { background: var(--coral-light); color: var(--coral); }
+
+.sched-dates {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.sched-dates strong { color: var(--ink); }
+
+.countdown-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cd-unit {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 10px;
+  padding: 6px 11px;
+  text-align: center;
+  min-width: 54px;
+}
+.cd-num {
+  font-family: 'Cairo', sans-serif;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.1;
+  color: #FFD166;
+}
+.cd-lbl {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.8);
+}
+
+.container {
+  max-width: 1120px;
+  margin: 16px auto;
+  padding: 0 16px;
+}
+
+/* Dedicated Category Links Hub Box */
+.cat-links-hub {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1.5px solid #D0E2DF;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+}
+.cat-links-hub h3 {
+  font-family: 'Cairo', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0 0 6px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cat-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.cat-link-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #F8FAFC;
+  border: 1px solid var(--border);
+  border-right: 5px solid var(--teal);
+}
+.cat-link-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.cat-link-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.cat-link-url {
+  font-family: monospace;
+  font-size: 11.5px;
+  color: var(--teal);
+  direction: ltr;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cat-link-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Admin Panel */
+.admin-panel {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--gold);
+  margin-bottom: 20px;
+  display: none;
+}
+.admin-panel.show { display: block; }
+.admin-panel h2 {
+  font-family: 'Cairo', sans-serif;
+  font-size: 17px;
+  margin: 0 0 12px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-group label {
+  font-family: 'Cairo', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+.form-control {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 13.5px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: #FAFCFF;
+  color: var(--ink);
+  outline: none;
+}
+.form-control:focus {
+  border-color: var(--teal);
+  background: #fff;
+}
+.share-box {
+  margin-top: 14px;
+  background: var(--gold-light);
+  border: 1px dashed var(--gold);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.share-url {
+  font-family: monospace;
+  font-size: 12.5px;
+  color: var(--ink);
+  background: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  flex: 1;
+  min-width: 240px;
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+}
+
+/* Category Filter Tabs */
+.cat-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.cat-tab {
+  all: unset;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 15px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  border: 1.5px solid var(--border);
+  box-shadow: 0 2px 6px rgba(11,37,69,0.04);
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.cat-tab:hover { border-color: var(--teal); }
+.cat-tab.active {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.survey-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.survey-dir-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-top: 6px solid var(--teal);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.survey-dir-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(11,37,69,0.12);
+}
+.sdc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.sdc-num {
+  font-family: 'Cairo', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink-2);
+}
+.sdc-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  margin: 6px 0 4px;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.sdc-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.55;
+}
+.sdc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--bg);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Plan 47 Levels & Courses Section */
+.plan47-section {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-top: 6px solid var(--ink);
+  padding: 22px 22px;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+.plan47-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1.5px solid var(--bg);
+}
+.plan47-title-block h2 {
+  font-family: 'Cairo', sans-serif;
+  font-size: 19px;
+  font-weight: 900;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+.plan47-title-block p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+.level-pills-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.level-pill-btn {
+  all: unset;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  font-size: 12.5px;
+  font-weight: 800;
+  padding: 7px 14px;
+  border-radius: 10px;
+  background: #F4F7FB;
+  color: var(--ink);
+  border: 1.5px solid var(--border);
+  transition: all 0.18s;
+}
+.level-pill-btn:hover {
+  border-color: var(--teal);
+  background: var(--teal-light);
+}
+.level-pill-btn.active {
+  background: var(--teal);
+  color: #fff;
+  border-color: var(--teal);
+  box-shadow: 0 3px 10px rgba(18,119,107,0.25);
+}
+.level-block {
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  background: #FAFCFF;
+}
+.level-block-header {
+  background: linear-gradient(90deg, var(--ink), var(--ink-2));
+  color: #fff;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.level-block-header h3 {
+  font-family: 'Cairo', sans-serif;
+  font-size: 15.5px;
+  font-weight: 800;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.level-badge {
+  background: var(--gold);
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+.level-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+  gap: 12px;
+  padding: 14px;
+}
+.course-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-right: 5px solid var(--teal);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  transition: all 0.18s;
+}
+.course-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(11,37,69,0.09);
+  border-color: var(--teal);
+}
+.course-card.elective {
+  border-right-color: var(--gold);
+}
+.cc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.cc-code {
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 800;
+  background: var(--ink);
+  color: #FFD166;
+  padding: 3px 9px;
+  border-radius: 6px;
+  direction: ltr;
+}
+.cc-hours {
+  font-family: 'Cairo', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  background: var(--teal-light);
+  color: var(--teal);
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+.course-card.elective .cc-hours {
+  background: var(--gold-light);
+  color: #8c6727;
+}
+.cc-name-ar {
+  font-family: 'Cairo', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink);
+  margin: 4px 0 2px;
+}
+.cc-name-en {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+  direction: ltr;
+  text-align: right;
+}
+.cc-meta {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--border);
+}
+.cc-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+/* Google Forms Style View */
+.gform-wrapper {
+  max-width: 780px;
+  margin: 0 auto;
+  display: none;
+}
+.gform-wrapper.active { display: block; }
+.gform-header-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-top: 10px solid var(--accent);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+.gform-eyebrow {
+  font-family: 'Cairo', sans-serif;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.gform-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: clamp(19px, 2.5vw, 25px);
+  font-weight: 900;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+.gform-desc {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0 0 14px;
+}
+.gform-meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12.5px;
+}
+.sample-pill {
+  background: var(--bg);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.sample-pill.hi { background: var(--teal-light); color: var(--teal); }
+.sample-pill.gold { background: var(--gold-light); color: #8c6727; }
+.gform-req-note {
+  color: var(--coral);
+  font-size: 12.5px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+.gform-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 24px;
+  margin-bottom: 14px;
+  border: 1.5px solid transparent;
+  transition: border-color 0.2s;
+}
+.gform-card:focus-within { border-color: var(--accent); }
+.q-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 14px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.q-num-badge {
+  display: inline-block;
+  background: var(--bg);
+  color: var(--ink-2);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-left: 6px;
+}
+.req-star { color: var(--coral); margin-right: 4px; }
+.likert-scale {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.likert-opt { position: relative; }
+.likert-opt input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.likert-lbl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px 8px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: #FAFCFF;
+  cursor: pointer;
+  transition: all 0.18s;
+  height: 100%;
+}
+.likert-lbl:hover {
+  border-color: var(--accent);
+  background: #F4F9F8;
+}
+.likert-val {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 6px;
+  transition: all 0.18s;
+}
+.likert-txt {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.likert-opt input[type="radio"]:checked + .likert-lbl {
+  border-color: var(--accent);
+  background: var(--teal-light);
+  box-shadow: 0 4px 12px rgba(18,119,107,0.14);
+}
+.likert-opt input[type="radio"]:checked + .likert-lbl .likert-val {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: scale(1.08);
+}
+.demo-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.demo-pill { position: relative; }
+.demo-pill input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+.demo-pill label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: #FAFCFF;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: all 0.18s;
+}
+.demo-pill input[type="radio"]:checked + label {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+.form-progress-bar {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  position: sticky;
+  top: 82px;
+  z-index: 90;
+  border: 1px solid var(--border);
+}
+.fp-track {
+  flex: 1;
+  height: 8px;
+  background: var(--bg);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.fp-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--teal));
+  transition: width 0.3s;
+}
+.fp-text {
+  font-family: 'Cairo', sans-serif;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.lock-card, .thankyou-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 36px 28px;
+  text-align: center;
+  margin: 24px auto;
+  max-width: 680px;
+  display: none;
+}
+.lock-card { border-top: 8px solid var(--coral); }
+.thankyou-card { border-top: 10px solid var(--teal); }
+.lock-card.show, .thankyou-card.show { display: block; }
+.lock-icon { font-size: 52px; margin-bottom: 12px; }
+
+.responses-view {
+  display: none;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-top: 16px;
+}
+.responses-view.show { display: block; }
+.resp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 14px;
+}
+.resp-table th {
+  background: var(--ink);
+  color: #fff;
+  padding: 10px;
+  font-family: 'Cairo', sans-serif;
+}
+.resp-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .likert-scale { grid-template-columns: 1fr; }
+  .likert-lbl {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+  }
+  .likert-val { margin-bottom: 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="top-bar-inner">
+    <div class="brand-block">
+      <div class="brand-logo">⚛️</div>
+      <div class="brand-text">
+        <h1>بوابة استبانات الطلاب والطالبات — برنامج الفيزياء</h1>
+        <p>استبانات الطلاب العامة واستبانات تقويم مقررات الخطة 47 حسب المستويات — الكلية الجامعية بالقنفذة</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="btn btn-outline-light active" id="btnShowDirectory" onclick="switchView('directory')">📋 قائمة الاستبانات</button>
+      <button class="btn btn-outline-light" id="btnShowResponses" onclick="switchView('responses')">📊 الردود (<span id="respCountBadge">0</span>)</button>
+      <button class="btn btn-outline-light" id="btnToggleAdmin" onclick="toggleAdminPanel()">⚙️ إعدادات الفترة والروابط</button>
+      <a class="btn btn-gold" href="index.html" target="_blank">📖 كتيب النتائج (28 شريحة)</a>
+    </div>
+  </div>
+</header>
+
+<section class="schedule-banner">
+  <div class="schedule-card status-open" id="scheduleCard">
+    <div class="sched-info">
+      <span class="status-badge" id="statusBadge">🟢 الاستبيان متاح حالياً لاستقبال الردود</span>
+      <div class="sched-dates">
+        <span>📅 بداية الفترة: <strong id="lblStartDate">—</strong></span>
+        <span>⏳ انتهاء الموعد: <strong id="lblEndDate">—</strong></span>
+        <span>🎯 الفصل: <strong id="lblTerm">الفصل الدراسي الثاني 1447هـ</strong></span>
+      </div>
+    </div>
+    <div class="countdown-box" id="countdownBox">
+      <div class="cd-unit"><div class="cd-num" id="cdDays">00</div><div class="cd-lbl">يوم</div></div>
+      <div class="cd-unit"><div class="cd-num" id="cdHours">00</div><div class="cd-lbl">ساعة</div></div>
+      <div class="cd-unit"><div class="cd-num" id="cdMins">00</div><div class="cd-lbl">دقيقة</div></div>
+      <div class="cd-unit"><div class="cd-num" id="cdSecs">00</div><div class="cd-lbl">ثانية</div></div>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+
+  <!-- Admin Configuration Panel -->
+  <section class="admin-panel" id="adminPanel">
+    <h2>
+      <span>⚙️ لوحة تحكم منسق الجودة — جدولة فترة الاستبيان وتوليد الروابط الخاصة بكل صنف ومستوى</span>
+      <button class="btn btn-outline-light" style="color:var(--ink);border-color:var(--border);" onclick="toggleAdminPanel()">✕ إغلاق</button>
+    </h2>
+    <div class="admin-grid">
+      <div class="form-group">
+        <label for="inpStart">🟢 تاريخ ووقت بداية الاستبيان:</label>
+        <input type="datetime-local" id="inpStart" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="inpEnd">🔴 تاريخ ووقت انتهاء موعد الاستبيان:</label>
+        <input type="datetime-local" id="inpEnd" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="inpTerm">🎓 العام والفصل الدراسي:</label>
+        <select id="inpTerm" class="form-control" onchange="saveScheduleSettings()">
+          <option value="471">الفصل الدراسي الأول 1447هـ (471)</option>
+          <option value="472" selected>الفصل الدراسي الثاني 1447هـ (472)</option>
+          <option value="481">الفصل الدراسي الأول 1448هـ (481)</option>
+          <option value="482">الفصل الدراسي الثاني 1448هـ (482)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="inpTargetSurvey">🔗 اختيار الصنف أو المستوى أو الاستبانة للنسخ:</label>
+        <select id="inpTargetSurvey" class="form-control" onchange="updateGeneratedShareUrl()"></select>
+      </div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="saveScheduleSettings()">💾 حفظ وتطبيق فترة الاستبيان</button>
+      <button class="btn btn-gold" onclick="setQuickWindow('open30')">⚡ فتح لمدة 30 يوماً من الآن</button>
+      <button class="btn btn-outline-light" style="color:var(--ink);border-color:var(--border);" onclick="setQuickWindow('upcoming')">🕒 تجربة حالة (لم يبدأ بعد)</button>
+      <button class="btn btn-danger" onclick="setQuickWindow('closed')">🔒 تجربة حالة (انتهى موعد الاستبيان)</button>
+    </div>
+    <div class="share-box">
+      <span style="font-family:'Cairo',sans-serif;font-size:12.5px;font-weight:700;">🔗 الرابط الجاهز للإرسال لذوي العلاقة:</span>
+      <div class="share-url" id="generatedShareUrl">—</div>
+      <button class="btn btn-primary" onclick="copyShareUrl()">📋 نسخ الرابط</button>
+      <button class="btn btn-gold" onclick="openGeneratedShareUrl()">↗️ فتح الرابط الآن</button>
+    </div>
+  </section>
+
+  <!-- VIEW 1: Directory -->
+  <section id="viewDirectory">
+
+    <!-- Dedicated Category Links Hub (Visible on Master Portal forms.html) -->
+    <div class="cat-links-hub" id="catLinksHub" style="display:none;">
+      <h3>
+        <span>🔗 الروابط المستقلة الخاصة بكل صنف من ذوي العلاقة (يرسل كل رابط للفئة المعنية فقط)</span>
+        <span style="font-size:12px;color:var(--teal);font-weight:700;">خطة برنامج الفيزياء 47 — الكلية الجامعية بالقنفذة</span>
+      </h3>
+      <div class="cat-links-grid" id="dedicatedCatLinksGrid"></div>
+    </div>
+
+    <!-- Navigation Tabs (Shown on forms.html or students.html) -->
+    <div class="cat-tabs" id="catTabs" style="display:flex;">
+      <button class="cat-tab active" data-cat="all" onclick="filterCategory('all')">🌐 جميع الاستبانات والمستويات</button>
+      <button class="cat-tab" data-cat="students" onclick="filterCategory('students')">🎓 استبانات الطلاب العامة (5)</button>
+      <button class="cat-tab" data-cat="courses" onclick="filterCategory('courses')">📚 تقويم مقررات خطة 47 حسب المستويات (8 مستويات · 60 مقرراً)</button>
+      <button class="cat-tab" data-cat="faculty" onclick="filterCategory('faculty')" style="display:none;">👨‍🏫 أعضاء هيئة التدريس (6)</button>
+      <button class="cat-tab" data-cat="graduates" onclick="filterCategory('graduates')" style="display:none;">🎖️ الخريجون (2)</button>
+      <button class="cat-tab" data-cat="employers" onclick="filterCategory('employers')" style="display:none;">🏢 أرباب العمل (1)</button>
+      <button class="cat-tab" data-cat="staff" onclick="filterCategory('staff')" style="display:none;">🔬 الموظفون وفنيو المختبرات (1)</button>
+    </div>
+
+    <!-- General Stakeholder Survey Cards Grid -->
+    <div class="survey-cards-grid" id="surveyCardsGrid"></div>
+
+    <!-- Plan 47 Course Evaluation Surveys Grouped Inside Their 8 Academic Levels -->
+    <div class="plan47-section" id="plan47Section">
+      <div class="plan47-header">
+        <div class="plan47-title-block">
+          <h2>📚 استبانات تقويم المقررات الدراسية — الخطة الدراسية الموحدة (خطة 47) — مصنفة داخل مستوياتها</h2>
+          <p>اختر المستوى الدراسي (من المستوى الأول إلى المستوى الثامن) لفتح استبانة تقويم أي مقرر أو نسخ الرابط الخاص بالمستوى أو المقرر لإرساله للطلاب.</p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <input type="text" id="inpCourseSearch" class="form-control" placeholder="🔍 ابحث برمز أو اسم المقرر (مثال: PHYS2201T أو كم)..." oninput="renderPlan47Levels()" style="min-width:250px;">
+        </div>
+      </div>
+
+      <!-- Level Filter Pills (Level 1 .. Level 8) -->
+      <div class="level-pills-bar" id="levelPillsBar"></div>
+
+      <!-- Levels Container -->
+      <div id="plan47LevelsContainer"></div>
+    </div>
+
+  </section>
+
+  <!-- VIEW 2: Active Google-Forms-Style Questionnaire -->
+  <section class="gform-wrapper" id="viewForm">
+    <div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+      <button class="btn btn-outline-light" style="color:var(--ink);border-color:var(--border);background:#fff;" onclick="switchView('directory')" id="btnBackToDir">→ العودة إلى قائمة الاستبانات</button>
+      <button class="btn btn-gold" type="button" onclick="copyCurrentFormDirectLink()">🔗 نسخ الرابط المباشر لهذه الاستبانة</button>
+    </div>
+
+    <div class="lock-card" id="lockCard">
+      <div class="lock-icon" id="lockIcon">🔒</div>
+      <h2 style="font-family:'Cairo',sans-serif;margin:0 0 8px;" id="lockTitle">انتهى موعد استقبال الردود لهذا الاستبيان</h2>
+      <p style="color:var(--text-muted);font-size:15px;line-height:1.7;margin:0 auto 18px;max-width:520px;" id="lockDesc"></p>
+      <button class="btn btn-primary" onclick="switchView('directory')">العودة إلى القائمة</button>
+    </div>
+
+    <form id="activeSurveyForm" onsubmit="submitSurveyForm(event)">
+      <div class="gform-header-card" id="formHeaderCard">
+        <div class="gform-eyebrow" id="formEyebrow"></div>
+        <h2 class="gform-title" id="formTitle"></h2>
+        <p class="gform-desc" id="formDesc"></p>
+        <div class="gform-meta-strip">
+          <span class="sample-pill">🏛️ قسم الفيزياء — الكلية الجامعية بالقنفذة — جامعة أم القرى</span>
+          <span class="sample-pill hi" id="formTargetBadge"></span>
+          <span class="sample-pill gold" id="formDeadlineBadge"></span>
+        </div>
+        <div class="gform-req-note">* تشير إلى أن السؤال مطلوب</div>
+      </div>
+
+      <div class="form-progress-bar">
+        <span class="fp-text" id="fpCountText">تمت الإجابة على 0 من 0</span>
+        <div class="fp-track"><div class="fp-fill" id="fpFill"></div></div>
+        <span class="fp-text" id="fpPctText">0%</span>
+      </div>
+
+      <div class="gform-card">
+        <h3 class="q-title"><span class="q-num-badge">بيانات أساسية</span> الشطر / الجنس <span class="req-star">*</span></h3>
+        <div class="demo-options">
+          <div class="demo-pill">
+            <input type="radio" name="resp_gender" id="g_male" value="ذكور" required onchange="updateFormProgress()">
+            <label for="g_male">👨 شطر الطلاب (ذكور)</label>
+          </div>
+          <div class="demo-pill">
+            <input type="radio" name="resp_gender" id="g_female" value="إناث" required onchange="updateFormProgress()">
+            <label for="g_female">👩 شطر الطالبات (إناث)</label>
+          </div>
+        </div>
+
+        <h3 class="q-title" style="margin-top:18px;"><span class="q-num-badge">بيانات التصنيف</span> <span id="extraFieldLabel">الصفة / المستوى</span> <span class="req-star">*</span></h3>
+        <div class="demo-options" id="extraFieldOptions"></div>
+
+        <div id="courseNameWrap" style="margin-top:18px;display:none;">
+          <h3 class="q-title"><span class="q-num-badge">المقرر الدراسي (خطة 47)</span> اسم ورمز المقرر الفيزيائي والمستوى</h3>
+          <input type="text" id="inpCourseName" class="form-control" style="width:100%;font-weight:700;" placeholder="مثال: PHYS1101T - فيزياء عامة ١ (المستوى الأول)">
+        </div>
+      </div>
+
+      <div id="questionsContainer"></div>
+
+      <div class="gform-card">
+        <h3 class="q-title"><span class="q-num-badge">مقترحات تطويرية</span> ملاحظاتكم ومقترحاتكم لتحسين وتطوير المقرر / البرنامج بقسم الفيزياء (اختياري):</h3>
+        <textarea id="inpOpenNotes" class="form-control" rows="3" style="width:100%;resize:vertical;" placeholder="اكتب أي مقترحات أو ملاحظات تسهم في تطوير البيئة التعليمية أو البحثية أو المعملية بقسم الفيزياء..."></textarea>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;">
+        <button type="submit" class="btn btn-primary" style="font-size:15px;padding:12px 32px;">🚀 إرسال الاستبانة</button>
+        <button type="button" class="btn btn-outline-light" style="color:var(--text-muted);border-color:var(--border);background:#fff;" onclick="resetCurrentForm()">مسح النموذج</button>
+      </div>
+    </form>
+
+    <div class="thankyou-card" id="thankyouCard">
+      <div style="font-size:54px;margin-bottom:10px;">✅</div>
+      <h2 style="font-family:'Cairo',sans-serif;margin:0 0 8px;color:var(--teal);">تم تسجيل ردك بنجاح — شكراً لمشاركتك!</h2>
+      <p style="font-size:15px;color:var(--text-muted);line-height:1.7;max-width:540px;margin:0 auto 14px;">
+        تُقدّر لجنة الجودة والاعتماد الأكاديمي بـ <strong>برنامج الفيزياء — قسم الفيزياء — الكلية الجامعية بالقنفذة — جامعة أم القرى</strong> وقتكم ومشاركتكم الفاعلة في تطوير جودة البرنامج.
+      </p>
+      <div id="submittedScoreSummary" style="background:var(--teal-light);color:var(--teal);font-family:'Cairo',sans-serif;font-weight:800;padding:10px 18px;border-radius:10px;display:inline-block;margin-bottom:18px;"></div>
+      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="reopenSameForm()">➕ إرسال رد آخر</button>
+        <button class="btn btn-gold" onclick="switchView('responses')">📊 عرض ملخص الردود وتصديرها</button>
+        <button class="btn btn-outline-light" style="color:var(--ink);border-color:var(--border);" onclick="switchView('directory')">📋 العودة لقائمة الاستبانات</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW 3: Responses -->
+  <section class="responses-view" id="viewResponses">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <div>
+        <h2 style="font-family:'Cairo',sans-serif;margin:0 0 4px;">📊 سجل الردود المجمّعة وإحصاءات الاستبانات المباشرة</h2>
+        <p style="margin:0;font-size:13px;color:var(--text-muted);">يمكنك تصدير جميع الردود إلى ملف Excel (CSV) أو ملف JSON لتحديث كتيب استطلاعات الرأي التفاعلي تلقائياً.</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="exportResponsesCSV()">📥 تصدير الردود (Excel CSV)</button>
+        <button class="btn btn-gold" onclick="exportResponsesJSON()">📥 تصدير ملف البيانات (JSON)</button>
+        <button class="btn btn-danger" onclick="clearAllResponses()">🗑️ مسح السجل المحلي</button>
+      </div>
+    </div>
+    <div id="responsesSummaryContent" style="margin-top:16px;"></div>
+  </section>
+
+</main>
+
+<script>
+const PAGE_MODE = "students";
+const PAGE_FILENAME = "students.html";
+const PUBLIC_BASE_DIR = "https://waelzag2.github.io/physics-surveys/";
+const SURVEYS = [{"id": "phys_surv_01", "seq": 1, "category_key": "students", "category_title": "أولاً: استبانات الطلاب والطالبات", "target_group": "طلاب وطالبات برنامج الفيزياء", "color": "#12776B", "icon": "🎓", "page_file": "students.html", "title": "متوسط مدى وعي الطلاب برسالة البرنامج", "desc": "وعي الطلاب برسالة البرنامج وأهدافه", "extra_field_spec": "المستوى الدراسي: المستوى الأول / الثاني | المستوى الثالث / الرابع | المستوى الخامس / السادس | المستوى السابع / الثامن", "questions": ["تم تعريف الطلبة بوجود رسالة للبرنامج", "تم توضيح محتوى رسالة البرنامج للطلبة", "أوافق على محتوى رسالة البرنامج", "يتم إعلام الطلبة بأي تغيرات تطرأ على رسالة البرنامج بشكل دائم", "تتسق رسالة البرنامج مع رسالة الكلية", "تعكس رسالة البرنامج الأهداف الرئيسة للبرنامج", "هناك علاقة وثيقة بين رسالة البرنامج و جميع أنشطة البرنامج"], "baseline_pct": 91.4, "sample": {"target": 240, "resp": 198, "rate": "82.5%", "m_resp": 92, "f_resp": 106, "prev_pct": 89.2}}, {"id": "phys_surv_02", "seq": 2, "category_key": "students", "category_title": "أولاً: استبانات الطلاب والطالبات", "target_group": "طلاب وطالبات برنامج الفيزياء", "color": "#12776B", "icon": "🎓", "page_file": "students.html", "title": "تقويم الطلبة لجودة خبرات التعلم في البرنامج", "desc": "جودة خبرات التعلم المتاحة للطلبة داخل البرنامج", "extra_field_spec": "المستوى الدراسي: المستوى الأول / الثاني | المستوى الثالث / الرابع | المستوى الخامس / السادس | المستوى السابع / الثامن", "questions": ["أتيح لي الإرشاد الأكاديمي والمهني المناسب خلال فترة دراستي بالبرنامج", "كانت هيئة التدريس متاحة للإرشاد والمشورة عندما كنت أحتاج للتحدث إليهم.", "شجعني هيئة التدريس بالقسم على أن أقدم أفضل ما عندي .", "قدمت هيئة التدريس بالقسم تغذية راجعة على عملي.", "لدى هيئة التدريس بالقسم معرفة كبيرة بمحتوى المقررات التي يدرسونها.", "كانت هيئة التدريس بالقسم متحمسة للعمل.", "اهتمت هيئة التدريس بمدى تـقدم طلبتهم.", "كانت المواد الدراسية المساعدة للمقررات حديثة ومفيدة.", "كانت مصادر المكتبة مناسبة ومتاحة كلما كنت أحتاج لها.", "اتسمت تجهيزات القاعات(للمحاضرات، والمعامل، والدروس) بالجودة", "كانت تجهيزات الحاسب كافية لاحتياجاتي.", "توفرت التجهيزات المناسبة للأنشطة اللامنهجية (بما في ذلك التجهيزات الخاصة بالرياضة والترفيه).", "هناك مرافق مناسبة لأداء الشعائر الدينية.", "كانت برامج التدريب الميداني (أو سنة الامتياز) فعالة في تطوير مهاراتي", "ما تعلمته في هذا البرنامج (القسم) سيكون مهماً لمستقبلي.", "لقد ساعدني البرنامج في تطوير الاهتمام الكافي لدي للسعي في الاستمرار في تحديث معلوماتي حسبما يستجد في مجال دراستي.", "لقد طور البرنامج قدرتي على استقصاء وحل المشكلات الجديدة.", "لقد طور البرنامج قدرتي على العمل بفاعلية مع المجموعات.", "لقد حسن البرنامج مهاراتي في الاتصال .", "لقد ساعدني البرنامج في تطوير مهاراتي الأساسية في استخدام التقنية لدراسة القضايا والتعبير عن النتائج", "لقد طورت المعارف والمهارات اللازمة لمهنتي التي اخترتها.", "أشعر بالرضا بشكل عام عن مستوى جودة خبرتي التعليمية في الجامعة."], "baseline_pct": 89.0, "sample": {"target": 240, "resp": 204, "rate": "85.0%", "m_resp": 95, "f_resp": 109, "prev_pct": 87.4}}, {"id": "phys_surv_03", "seq": 3, "category_key": "students", "category_title": "أولاً: استبانات الطلاب والطالبات", "target_group": "طلاب وطالبات برنامج الفيزياء", "color": "#12776B", "icon": "🎓", "page_file": "students.html", "title": "تقييم رضا الطلبة عن الخدمات والأنشطة المقدمة", "desc": "رضا الطلبة عن خدمات عمادة شؤون الطلاب والأنشطة الطلابية", "extra_field_spec": "المستوى الدراسي: المستوى الأول / الثاني | المستوى الثالث / الرابع | المستوى الخامس / السادس | المستوى السابع / الثامن", "questions": ["يحسن موظف شؤون الطلاب استقبال الطلاب.", "يجيب موظف شؤون الطلاب عن كافة استفسارات الطالب المستجد بالشكل المطلوب.", "يقدم موظف شئون الطلاب الخدمات بالسرعة المطلوبة.", "يقوم موظف شئون الطلاب بتقديم كتيبات تساعد الطالب على التعرف على نظام الدراسة بالجامعة", "يتم استخراج البطاقة الجامعية في زمن مناسب", "يتم الحصول على السجل الأكاديمي بالسرعة والكفاءة المطلوبة.", "تتيح الجامعة للطالب فرصة المشاركة في الأنشطة الثقافية", "تتسم الخدمات الثقافية المقدمة بالتنوع.", "توقيت تقديم الخدمات الثقافية بالجامعة مناسب للطلبة.", "المكافآت المخصصة للأنشطة الثقافية مناسبة جدا.", "تتيح الجامعة للطالب فرص ملائمة للمشاركة في الأنشطة الرياضية.", "تتسم الأنشطة الرياضية بالتنوع.", "الجوائز المقدمة للأنشطة الرياضية مناسبة جدا.", "يستقبل مقدم خدمة الإرشاد الأكاديمي استفسارات الطلاب برحابة.", "تتم تأدية خدمة الإرشاد الأكاديمي في الوقت المناسب.", "يساعد المرشد الأكاديمي الطلاب في تسجيل المقررات المناسبة.", "تتناسب سعة مواقف السيارات مع عدد الطلاب.", "تتسم الخدمات الأمنية بمواقف السيارات بالكفاءة.", "تتسم الخدمات الأمنية المقدمة للطالب بالجامعة بالكفاءة.", "تتسم نماذج طلبات الحصول على الخدمات الأمنية بالبساطة والسهولة في تعبئتها.", "تلبى محتويات الكافيتريا رغبات الطلبة.", "موقع الكافيتريا مناسب للطلبة.", "أسعار خدمات الكافيتريا مناسبة جدا.", "تتسم محتويات الكافيتريا (طعام-شراب) بالنظافة.", "يتوافر بالجامعة مركز طبي لتقديم الخدمات الصحية للطلبة.", "يتسم أداء العاملين في المركز الطبي بالكفاءة في تقديم الرعاية الصحية للطلبة.", "يتم الحصول على الخدمات الصحية بالجامعة للطلبة بسهولة.", "تتوافر بالجامعة دورات مياه خاصة بذوي الاحتياجات الخاصة.", "تتوافر بدورات المياه كافة وسائل الراحة.", "يتوافر بالجامعة مصعد خاص بذوي الاحتياجات الخاصة.", "تتوافر بالجامعة مواقف خاصة بسيارات ذوى الاحتياجات الخاصة", "سعة المواقف المخصصة لذوى الاحتياجات الخاصة مناسبة جدا."], "baseline_pct": 86.3, "sample": {"target": 240, "resp": 192, "rate": "80.0%", "m_resp": 89, "f_resp": 103, "prev_pct": 84.8}}, {"id": "phys_surv_04", "seq": 4, "category_key": "students", "category_title": "أولاً: استبانات الطلاب والطالبات", "target_group": "طلاب وطالبات برنامج الفيزياء", "color": "#12776B", "icon": "🎓", "page_file": "students.html", "title": "مدى رضا الطلاب عن المرافق والتجهيزات", "desc": "رضا الطلبة عن المباني والمرافق والتجهيزات والسكن الجامعي", "extra_field_spec": "المستوى الدراسي: المستوى الأول / الثاني | المستوى الثالث / الرابع | المستوى الخامس / السادس | المستوى السابع / الثامن", "questions": ["توفر المباني بيئة مادية متكاملة الخدمات", "المرافق تلبي متطلبات الصحة والسلامة", "تتوافر مرافق كافية للساعات المكتبية بين هيئة التدريس والطلاب", "تتوافر المرافق الملائمة لإقامة الصلاة", "تتوفر مرافق تقديم طعام كافية العدد ومناسبة لاحتياجات الطلبة", "تتلاءم المرافق مع احتياجات الطلبة ذوي الاحتياجات الخاصة", "تتوافر المرافق المناسبة لأداء الأنشطة المختلفة للطلاب", "يتم أداء أعمال النظافة والتخلص من النفايات، بكفاءة وفعالية .", "يتم أداء أعمال الصيانة للأجهزة والمعدات، بكفاءة وبشكل دوري.", "تتوافر أنظمة ذات كافة عالية لضمان السلامة الشخصية للطلبة", "تتوافر الإجراءات الضرورية لحماية أغراض الطلبة الشخصية.", "تقوم الإدارة بتخصيص أوقات استخدام المباني العامة لمختلف المستخدمين", "تتوافر الحاسبات الآلية لاستعمال الطلبة", "توجد قواعد وسياسات عامة تحكم استعمال الطلبة للحاسبات الشخصية", "توجد قواعد سلوك تتعلق بالاستخدام غير القويم للمواد الموجودة على شبكة المعلومات", "يتوفر الدعم الفني لمساندة الطلبة المستخدمين لتقنيات المعلومات والاتصالات", "توجد أنظمة أمن لحماية خصوصيات الطلبة والمعلومات الحساسة المتعلقة بالجامعة", "تقدم الجامعة دورات تدريبية للطلبة لضمان الاستخدام الكفء للحاسبات الآلية وبرمجيات التدريس", "وفرت الجامعة سكناً مناسباً للطلبة", "السكن صحي", "السكن آمن", "يتوافر عدد كافٍ من الأماكن التي توفر الخصوصية", "تتوفر الأماكن المناسبة للأنشطة الطلابية المختلفة", "القوانين التي تحكم السلوك داخل السكن واضحة ومعروفة", "يشرف على السكن متخصصون وذو خبرة في إدارة السكن بحيث تجعل من السكن بيئة ملائمة وآمنة", "خدمات الطعام بشكل عام داخل السكن متوفرة ويسهل الوصول لها", "خدمات العلاج بشكل عام متوفرة", "تتوافر أماكن مناسبة للصلاة في السكن الطلابي", "تتوافر وسيلة مواصلات من السكن والى الجامعة"], "baseline_pct": 83.8, "sample": {"target": 240, "resp": 188, "rate": "78.3%", "m_resp": 87, "f_resp": 101, "prev_pct": 82.1}}, {"id": "phys_surv_05", "seq": 5, "category_key": "students", "category_title": "أولاً: استبانات الطلاب والطالبات", "target_group": "طلاب وطالبات برنامج الفيزياء", "color": "#12776B", "icon": "🎓", "page_file": "students.html", "title": "متوسط مدى رضا الطلاب عن الخدمات الإلكترونية", "desc": "رضا الطلبة عن الخدمات الإلكترونية والبنية التقنية بالجامعة", "extra_field_spec": "المستوى الدراسي: المستوى الأول / الثاني | المستوى الثالث / الرابع | المستوى الخامس / السادس | المستوى السابع / الثامن", "questions": ["سرعة استجابة موقع الجامعة الإلكتروني", "سرعة تحميل الروابط داخل موقع الجامعة", "تنسيق الصفحة الرئيسية لموقع الجامعة", "تصفح موقع الجامعة على مختلف متصفحات الانترنت", "تغطية موقع الجامعة لجميع الأحداث القائمة داخل الجامعة", "عرض الخدمات الأكاديمية داخل موقع الجامعة", "تصفح موقع الجامعة من الهواتف الذكية", "تقييمك الإجمالي لموقع الجامعة الإلكتروني", "سرعة استجابة البريد الالكتروني", "سرعة تحميل الملفات إلى البريد الالكتروني", "إعدادات وضع الأمان في البريد الالكتروني", "العملية الأوتوماتيكية للخروج من البريد الالكتروني", "الفترة الزمنية اللازمة للوصول إلى البريد الالكتروني", "استخدام التوقيع الرسمي لك في البريد الالكتروني", "عملية البحث عن جهات الاتصال من سجل العناوين", "عملية التصفية للبريد الالكتروني", "استخدام التقويم الزمني لتحديد المواعيد والأحداث داخل البريد الالكتروني", "استخدام البريد الالكتروني للاحتفاظ بالملفات المهمة لديك لإمكانية الوصول إليها من أي مكان", "سهولة الحصول على بيانات حسابك للدخول على شبكة الانترنت", "سهولة تثبيت إعدادات الانترنت على جهازك", "سرعة تصفح مواقع الانترنت", "سرعة تحميل الملفات", "سرعة رفع الملفات", "سهولة الاتصال بالإنترنت من خلال الهواتف الذكية والأجهزة المختلفة الأخرى", "إعدادات الأمان الخاصة بشبكة الانترنت", "خدمات نظام إدارة التعلم الالكتروني \"D2L\"", "سرعة تحميل \"D2L\" من داخل الجامعة", "سرعة تحميل \"D2L\" من خارج الجامعة", "الخدمات الإلكترونية لنظام المركز الطبي", "عملية اتصال الجامعة بك من خلال الرسائل النصية القصيرة \"SMS\"؟", "الأنظمة الالكترونية الحديثة المستخدمة في العملية التعليمية", "وسائل العرض المستخدمة في العملية التعليمية", "جودة أنظمة الاتصال الصوتي المتوفرة بالجامعة", "جودة أنظمة الاتصال المرئي المتوفرة بالجامعة"], "baseline_pct": 84.5, "sample": {"target": 240, "resp": 195, "rate": "81.3%", "m_resp": 90, "f_resp": 105, "prev_pct": 83.0}}, {"id": "phys_surv_06", "seq": 6, "category_key": "students", "category_title": "أولاً: استبانات الطلاب والطالبات", "target_group": "طلاب وطالبات برنامج الفيزياء", "color": "#12776B", "icon": "🎓", "page_file": "students.html", "title": "تقويم الطلبة للمقررات الدراسية ومختبرات الفيزياء", "desc": "تقييم الطلبة لجودة المقررات الدراسية والتجارب والتجهيزات المعملية بقسم الفيزياء", "extra_field_spec": "المستوى الدراسي: المستوى الأول / الثاني | المستوى الثالث / الرابع | المستوى الخامس / السادس | المستوى السابع / الثامن", "questions": ["أهداف المقرر ومخرجات التعلم كانت واضحة منذ بداية الفصل الدراسي", "محتوى المقررات الفيزيائية حديث ومتسق مع الخطة الدراسية وتوصيف المقرر", "أساليب التدريس المستخدمة عززت الفهم العميق للمفاهيم والظواهر الفيزيائية", "الاختبارات وأدوات التقييم كانت عادلة وشاملة لمخرجات تعلم المقرر", "التجارب العملية في مختبرات الفيزياء مرتبطة بوضوح بالجانب النظري للمقررات", "أدلة التجارب المعملية واضحة وتساعد على تنفيذ القياسات الفيزيائية وتحليل الأخطاء", "تتوفر إجراءات وأدوات السلامة المختبرية في معامل قسم الفيزياء بشكل كافٍ", "كفاية وحداثة الأجهزة وأدوات القياس في مختبرات الفيزياء التخصصية (الضوء، النووية، الجوامد)", "توظيف البرمجيات الفيزيائية والمحاكاة الحاسوبية في تدريس المقررات والمعامل", "الرضا العام عن جودة المقررات الدراسية في برنامج الفيزياء"], "baseline_pct": 89.8, "sample": {"target": 240, "resp": 212, "rate": "88.3%", "m_resp": 98, "f_resp": 114, "prev_pct": 88.0}}, {"id": "phys_surv_07", "seq": 7, "category_key": "faculty", "category_title": "ثانيًا: استبانات أعضاء هيئة التدريس", "target_group": "أعضاء هيئة التدريس بقسم الفيزياء", "color": "#B08945", "icon": "👨‍🏫", "page_file": "faculty.html", "title": "متوسط مدى وعي أعضاء هيئة التدريس برسالة البرنامج", "desc": "وعي أعضاء هيئة التدريس برسالة البرنامج وغاياته", "extra_field_spec": "الرتبة الأكاديمية: أستاذ | أستاذ مشارك | أستاذ مساعد | محاضر / معيد", "questions": ["تم تحديد رسالة البرنامج بالتشاور مع المستفيدين", "تم توضيح رسالة البرنامج للمستفيدين", "يتم إعلام المستفيدين بأي تغيرات تطرأ على رسالة البرنامج", "تتسق رسالة البرنامج مع رسالة الكلية", "تحدد رسالة البرنامج اتجاهات تطوير البرنامج", "رسالة البرنامج مؤثرة في توجيه عمليات صنع القرار", "رسالة البرنامج ممكنة التحقيق من خلال استراتيجيات فعالة", "رسالة البرنامج مرجعاً  لتقويم العمل", "تستخدم رسالة البرنامج كأساس للتخطيط الإستراتيجي", "تتسق غايات تطوير البرنامج مع رسالته", "تم صياغة غايات البرنامج بصورة واضحة تمكن من استخدامها في عمليات التخطيط وصنع القرار", "تتم مراجعة غايات البرنامج وأهدافه دورياً"], "baseline_pct": 88.1, "sample": {"target": 22, "resp": 20, "rate": "90.9%", "m_resp": 11, "f_resp": 9, "prev_pct": 86.5}}, {"id": "phys_surv_08", "seq": 8, "category_key": "faculty", "category_title": "ثانيًا: استبانات أعضاء هيئة التدريس", "target_group": "أعضاء هيئة التدريس بقسم الفيزياء", "color": "#B08945", "icon": "👨‍🏫", "page_file": "faculty.html", "title": "تقييم أعضاء هيئة التدريس لبيئة العمل في البرنامج الأكاديمي", "desc": "تقييم بيئة التدريس والبحث العلمي والعمل الإداري والدعم المؤسسي", "extra_field_spec": "الرتبة الأكاديمية: أستاذ | أستاذ مشارك | أستاذ مساعد | محاضر / معيد", "questions": ["البيئة التدريسية تسمح بتنظيم وقتي بين التدريس والبحث العلمي", "البيئة التدريسية تحفزني على الإبداع", "البيئة التدريسية تقدم عبء تدريسي مناسب", "البيئة التدريسية تعطيني الفرصة لاختيار المقرر الذي أود تدريسه", "البيئة التدريسية توفر الوقت المناسب للعمل مع الطلاب للإرشاد الأكاديمي", "البيئة التدريسية تتيح التواصل مع الطلبة وتفاعلهم معي", "البيئة التدريسية تسمح بالتطوير المهني المستمر", "الأنشطة المرتبطة بالبحث من: التجهيزات البحثية المتاحة الأجهزة (حاسب آلي، آلة تصوير ... الخ)", "مساعدو الباحثين المكتبة (المصادر المطبوعة والرقمية) التعاون البحثي مع الزملاء والتفاعل معهم", "يتم بفاعلية التعاون البحثي مع الزملاء والتفاعل معهم", "القنوات المتاحة لتمويل البحوث معروفة وفاعلة", "الإمكانات المتاحة لتقديم الاستشارات المتخصصة متوفرة", "الإمكانات المتاحة للتعاون مع القطاع الخاص متوفرة وفاعلة", "العمل الاداري: المهام الإدارية الموكلة ليً واضحة ومحددة", "العمل الإداري:  يتم اشراكي بالعمل في اللجان", "العمل الإداري: اشترك بالعمل في مجال خدمة المجتمع", "الدعم والتشجيع: يتوفر الدعم والتشجيع الإداري من القسم", "الدعم والتشجيع: يتوفر الدعم من الإدارة العليا للجامعة", "الدعم والتشجيع :يتوفر الوضوح والشفافية في التعاملات الإدارية", "يتوفر الدعم المقدم من الجامعة للتواصل مع الخبرات الخارجية مثل (استضافة الخبراء, ودعم حضور المؤتمرات, التدريب،...)", "هناك رضا عن سلم الرواتب بالجامعة", "المزايا بصفة عامة ( كالخدمات الطبية ... الخ) متوفرة وكافية وفاعلة", "الاستقرار والأمن الوظيفي متوفر", "يتوفر الرضا العام في العمل بالقسم"], "baseline_pct": 87.7, "sample": {"target": 22, "resp": 20, "rate": "90.9%", "m_resp": 11, "f_resp": 9, "prev_pct": 85.9}}, {"id": "phys_surv_09", "seq": 9, "category_key": "faculty", "category_title": "ثانيًا: استبانات أعضاء هيئة التدريس", "target_group": "أعضاء هيئة التدريس بقسم الفيزياء", "color": "#B08945", "icon": "👨‍🏫", "page_file": "faculty.html", "title": "مدى رضا أعضاء هيئة التدريس عن المرافق والتجهيزات", "desc": "رضا أعضاء هيئة التدريس عن المباني والمرافق وإجراءات السلامة", "extra_field_spec": "الرتبة الأكاديمية: أستاذ | أستاذ مشارك | أستاذ مساعد | محاضر / معيد", "questions": ["توفر المباني بيئة متكاملة الخدمات", "توفر المباني بيئة مادية نظيفة", "المرافق تلبي متطلبات الصحة والسلامة", "تشمل عمليات تقييم الجودة ردود فعل المستفيدين بشأن كفاية وجودة المرافق", "تتوافر مرافق كافية للساعات المكتبية بين هيئة التدريس والطلاب", "يتوافر لدى الجامعة إحصاء وجرد كامل للأجهزة والمعدات التي تملكها", "يتم أداء أعمال النظافة والتخلص من النفايات, بكفاءة وفعالية", "تتم أعمال الصيانة  للأجهزة والمعدات بشكل دوري", "توجد إجراءات للتقييم بغرض الإصلاح والاستبدال بشكل دوري", "تتوافر إجراءات أمن تتميز بالكفاءة لحماية الأبنية والمرافق", "تتوافر أنظمة ذات كفاءة عالية لضمان السلامة الشخصية لأعضاء هيئة التدريس والطلبة", "تتوفر أنظمة لحماية الأغراض الشخصية لأعضاء هيئة التدريس"], "baseline_pct": 87.7, "sample": {"target": 22, "resp": 19, "rate": "86.4%", "m_resp": 10, "f_resp": 9, "prev_pct": 86.0}}, {"id": "phys_surv_10", "seq": 10, "category_key": "faculty", "category_title": "ثانيًا: استبانات أعضاء هيئة التدريس", "target_group": "أعضاء هيئة التدريس بقسم الفيزياء", "color": "#B08945", "icon": "👨‍🏫", "page_file": "faculty.html", "title": "تقييم أعضاء هيئة التدريس لمصادر التعلم", "desc": "تقييم مصادر التعلم والخدمات المكتبية المتاحة لأعضاء هيئة التدريس", "extra_field_spec": "الرتبة الأكاديمية: أستاذ | أستاذ مشارك | أستاذ مساعد | محاضر / معيد", "questions": ["توفر مناخ مناسب وهادئ للدراسة", "توفر أماكن للدراسة", "كفاءة الأجهزة المخصصة للمستفيدين واستمرارية تشغيلها وعملها", "مواعيد دوام المكتبة", "الاستفادة من خدمة التصوير والطباعة", "جودة خدمات المكتبة بشكل عام", "ترتيب الكتب على الأرفف وسهولة الوصول إليها", "وضوح ومرونة سياسة المكتبة ولوائحها", "توافر الأدلة الإرشادية المطبوعة والالكترونية لمساعدة المستفيدين", "وجود توعية معلوماتية عن المكتبة وخدماتها المختلفة", "خدمات معمل الانترنت والخدمات الالكترونية", "رضا المستفيدين عن خدمة اسأل اخصائي المكتبة", "تتم عملية اعارة الكتب واسترجاعها بسهولة ومرونة", "توافر معمل للتدريب مزود بالتقنيات الحديثة", "مدى كفاية مصادر المعلومات الورقية بشكل عام", "مدى حداثة المصادر الورقية بشكل عام", "مدى تنوع المصادر الورقية بشكل عام", "مدى حداثة المراجع وكفاية المراجع", "تواجد الموظفين خلال ساعات العمل", "تعاون موظفي المكتبة وتجاوبهم والرد على الاستفسارات والمساعدة في الخدمة المطلوبة", "سهولة استخدام الموقع الالكتروني", "سهولة الوصول للمحتوى الرقمي بشكل عام", "إتاحة قواعد المعلومات", "كفاية مصادر المعلومات الرقمية بشكل عام", "تنوع مصادر المعلومات الرقمية بشكل عام", "حداثة مصادر المعلومات الرقمية بشكل عام", "كفاية المحتوى الرقمي في قواعد المعلومات", "تنوع المحتوى الرقمي في قواعد المعلومات", "حداثة المحتوى الرقمي في قواعد المعلومات", "مدى الاستفادة من الدورات التدريبية التي تقدمها المكتبة لاستخدام قواعد المعلومات والمصادر الرقمية"], "baseline_pct": 72.1, "sample": {"target": 22, "resp": 19, "rate": "86.4%", "m_resp": 10, "f_resp": 9, "prev_pct": 71.5}}, {"id": "phys_surv_11", "seq": 11, "category_key": "faculty", "category_title": "ثانيًا: استبانات أعضاء هيئة التدريس", "target_group": "أعضاء هيئة التدريس بقسم الفيزياء", "color": "#B08945", "icon": "👨‍🏫", "page_file": "faculty.html", "title": "متوسط مدى الرضا الوظيفي لأعضاء هيئة التدريس", "desc": "الرضا الوظيفي وبيئة العمل الإدارية والمادية", "extra_field_spec": "الرتبة الأكاديمية: أستاذ | أستاذ مشارك | أستاذ مساعد | محاضر / معيد", "questions": ["التعامل مع الرئيس المباشر رئيس القسم/العميد", "أسلوب المتابعة الذي يتبعه رئيسك لمتابعة أدائك لعملك", "درجة وضوح التعليمات التي تصدر عن القسم /الكلية", "مدى ايجابية الإدارة في التعامل مع مقترحات هيئة التدريس", "مدى ايجابية الإدارة في التعامل مع شكاوى هيئة التدريس", "المشاركة في وضع أهداف العمل في القسم", "تحقق العدالة في توزيع أعباء العمل بين هيئة التدريس", "وضوح التوصيف الوظيفي والمهام المطلوبة لهيئة التدريس", "التكليف بأعمال إضافية بالقسم/الكلية", "توفر الصلاحيات الكافية لهيئة التدريس", "الفرص التدريبية المتاحة في مجال العمل", "التقدير الذي تتلقاه من رئيس القسم/العميدفيما يتعلق بأدائك", "إجراءات الترقية في العمل", "مقدار الراتب بالنسبة إلى حجم العمل الذي أقوم به", "عدالة توزيع المكافآت المالية بين هيئة التدريس", "توزيع العمل خارج الدوام على هيئة التدريس", "العلاقة بهيئة التدريس الزملاء في القسم/الكلية", "مساعدة هيئة التدريس زملائك لك عند زيادة حجم العمل", "تقدير هيئة التدريس زملائك لك عند إجادة الأعمال الموكلة بك", "العلاقة بالمتعاملين مع القسم/الكلية", "العلاقة بالأقسام/الكليات الأخرى في الجامعة", "المشاركة في الأنشطة التي تنظمها إدارة الكلية", "التجهيزات المكتبية", "المستوى العام للنظافة في مكان العمل", "التهوية في مكان العمل", "الإضاءة في مكان العمل", "وسائل الأمن والسلامة في مكان العمل", "توفر وسائل التقنية المكتبية اللازمة لأداء العمل"], "baseline_pct": 83.7, "sample": {"target": 22, "resp": 20, "rate": "90.9%", "m_resp": 11, "f_resp": 9, "prev_pct": 81.2}}, {"id": "phys_surv_12", "seq": 12, "category_key": "faculty", "category_title": "ثانيًا: استبانات أعضاء هيئة التدريس", "target_group": "أعضاء هيئة التدريس بقسم الفيزياء", "color": "#B08945", "icon": "👨‍🏫", "page_file": "faculty.html", "title": "متوسط رضا أعضاء هيئة التدريس عن الخدمات الإلكترونية", "desc": "رضا أعضاء هيئة التدريس عن الخدمات الإلكترونية والبنية التقنية", "extra_field_spec": "الرتبة الأكاديمية: أستاذ | أستاذ مشارك | أستاذ مساعد | محاضر / معيد", "questions": ["سرعة استجابة موقع الجامعة الإلكتروني", "سرعة تحميل الروابط داخل موقع الجامعة", "تنسيق الصفحة الرئيسية لموقع الجامعة", "تصفح موقع الجامعة على مختلف متصفحات الانترنت", "تغطية موقع الجامعة لجميع الأحداث القائمة داخل الجامعة", "عرض الخدمات الأكاديمية داخل موقع الجامعة", "تصفح موقع الجامعة من الهواتف الذكية", "تقييمك الإجمالي لموقع الجامعة الإلكتروني", "سرعة استجابة البريد الالكتروني", "سرعة تحميل الملفات إلى البريد الالكتروني", "إعدادات وضع الأمان في البريد الالكتروني", "العملية الأوتوماتيكية للخروج من البريد الالكتروني", "الفترة الزمنية اللازمة للوصول إلى البريد الالكتروني", "استخدام التوقيع الرسمي لك في البريد الالكتروني", "عملية البحث عن جهات الاتصال من سجل العناوين", "عملية التصفية للبريد الالكتروني", "استخدام التقويم الزمني لتحديد المواعيد والأحداث داخل البريد الالكتروني", "استخدام البريد الالكتروني للاحتفاظ بالملفات المهمة لديك لإمكانية الوصول إليها من أي مكان", "سهولة الحصول على بيانات حسابك للدخول على شبكة الانترنت", "سهولة تثبيت إعدادات الانترنت على جهازك", "سرعة تصفح مواقع الانترنت", "سرعة تحميل الملفات", "سرعة رفع الملفات", "سهولة الاتصال بالإنترنت من خلال الهواتف الذكية والأجهزة المختلفة الأخرى", "إعدادات الأمان الخاصة بشبكة الانترنت", "خدمات نظام إدارة التعلم الالكتروني \"D2L\"", "سرعة تحميل \"D2L\" من داخل الجامعة", "سرعة تحميل \"D2L\" من خارج الجامعة", "الخدمات الإلكترونية لنظام المركز الطبي", "عملية اتصال الجامعة بك من خلال الرسائل النصية القصيرة \"SMS\"؟", "الأنظمة الالكترونية الحديثة المستخدمة في العملية التعليمية", "وسائل العرض المستخدمة في العملية التعليمية", "جودة أنظمة الاتصال الصوتي المتوفرة بالجامعة", "جودة أنظمة الاتصال المرئي المتوفرة بالجامعة"], "baseline_pct": 81.6, "sample": {"target": 22, "resp": 19, "rate": "86.4%", "m_resp": 10, "f_resp": 9, "prev_pct": 79.5}}, {"id": "phys_surv_13", "seq": 13, "category_key": "employers", "category_title": "ثالثًا: استبانات أرباب العمل وجهات التوظيف", "target_group": "جهات توظيف وتدريب خريجي برنامج الفيزياء", "color": "#0B2A4A", "icon": "🏢", "page_file": "employers.html", "title": "تقييم جهات التوظيف لكفاءة خريجي برنامج الفيزياء", "desc": "نتائج استطلاع رأي أرباب العمل وجهات التوظيف حول المعارف والمهارات المهنية لخريجي قسم الفيزياء بالكلية الجامعية بالقنفذة", "extra_field_spec": "قطاع جهة التوظيف: قطاع التعليم العام / العالي | القطاع الصناعي والطاقة | المراكز البحثية والمختبرات | قطاع حكومي / خاص آخر", "questions": ["يمتلكون ويستخدمون المهارات والمعرفة التي تحتاجها الوظيفة", "لديهم القدرة على تعلم معارف ومهارات جديدة عن الوظيفة", "لديهم القدرة على توظيف وتبني استراتيجيات مبتكرة تلبي احتياجات العمل", "يمتلكون مهارات أساسية في الحاسب الآلي", "لديهم القدرة على جمع وتحليل وتنظيم المعلومة ذات الصلة بوظيفته", "يمتلكون مهارات تواصل في مختلف المجالات والبيئات", "الانضباط والالتزام في بيئة العمل", "إدارة الوقت بفاعلية والإنجاز بالوقت المحدد", "تحمل المسؤولية تجاه إجراءات العمل", "الثقة بالنفس", "الدافع الذاتي نحو التطوير المهني", "لديهم القدرة على العمل بفاعلية ضمن فريق", "الالتزام بأخلاقيات العمل والمسؤوليات المهنية", "لديهم القدرة على تنظيم المهام وتحديد الأولويات", "لديهم القدرة على تحديد المشكلة وصياغتها", "يتمتعون بروح المبادرة", "المشاركة في الأعمال التطوعية وأعمال التنمية المجتمعية"], "baseline_pct": 86.0, "sample": {"target": 18, "resp": 15, "rate": "83.3%", "m_resp": 10, "f_resp": 5, "prev_pct": 84.5}}, {"id": "phys_surv_14", "seq": 14, "category_key": "graduates", "category_title": "رابعًا: استبانات خريجي برنامج الفيزياء", "target_group": "خريجو وخريجات برنامج بكالوريوس الفيزياء", "color": "#2B580C", "icon": "🎖️", "page_file": "graduates.html", "title": "تقويم الخريجين لجودة برنامج الفيزياء والتأهيل المهني", "desc": "رأي خريجي برنامج بكالوريوس الفيزياء بالكلية الجامعية بالقنفذة في جودة البرنامج وملاءمته لسوق العمل", "extra_field_spec": "سنة التخرج والحالة الوظيفية: خريج 1447هـ | خريج 1446هـ | على رأس العمل | باحث عن عمل / دراسات عليا", "questions": ["زوّدني برنامج الفيزياء بأساس علمي رصين في الفيزياء الكلاسيكية والحديثة", "أكسبني البرنامج مهارات العمل المعملي وإجراء التجارب والقياسات الفيزيائية بدقة", "نمّى البرنامج قدرتي على التفكير النقدي وحل المشكلات العلمية المعقدة", "أسهم مشروع التخرج في تطوير مهاراتي البحثية والاستقلالية العلمية", "عزّز البرنامج مهاراتي في التواصل العلمي الفعال وكتابة التقارير الفيزيائية", "رسّخ البرنامج لديّ القيم المهنية وأخلاقيات البحث العلمي والعمل الجماعي", "أهّلني البرنامج بالمهارات الرقمية والحاسوبية اللازمة للنمذجة وتحليل البيانات", "ساهمت خدمات الإرشاد المهني وأنشطة الخريجين بالقسم في تهيئتي لسوق العمل", "يتواءم محتوى برنامج الفيزياء مع متطلبات الوظائف التعليمية والصناعية والاختبارات المهنية", "أشعر بالرضا العام عن دراستي في برنامج الفيزياء بالكلية الجامعية بالقنفذة"], "baseline_pct": 89.8, "sample": {"target": 48, "resp": 39, "rate": "81.3%", "m_resp": 18, "f_resp": 21, "prev_pct": 86.2}}, {"id": "phys_surv_15", "seq": 15, "category_key": "graduates", "category_title": "رابعًا: استبانات خريجي برنامج الفيزياء", "target_group": "خريجو وخريجات برنامج بكالوريوس الفيزياء", "color": "#2B580C", "icon": "🎖️", "page_file": "graduates.html", "title": "تقويم الخريجين لمدى تحقق نواتج تعلم برنامج الفيزياء (PLOs)", "desc": "القياس غير المباشر لنواتج تعلم برنامج الفيزياء (المعرفة والفهم K، المهارات S، القيم والاستقلالية V)", "extra_field_spec": "سنة التخرج والحالة الوظيفية: خريج 1447هـ | خريج 1446هـ | على رأس العمل | باحث عن عمل / دراسات عليا", "questions": ["(K1) استيعاب المفاهيم والمبادئ والنظريات الأساسية في مجالات الفيزياء الكلاسيكية والحديثة", "(K2) معرفة الطرق الرياضية والإحصائية وتطبيقاتها في تفسير الظواهر الفيزيائية", "(K3) الإلمام بمنهجيات البحث العلمي وأصول السلامة والأمان في المختبرات الفيزيائية", "(S1) تطبيق القوانين والنماذج الرياضية لحل المسائل والمشكلات الفيزيائية النظرية والتطبيقية", "(S2) تصميم وتنفيذ التجارب الفيزيائية وتشغيل الأجهزة المعملية وتحليل النتائج التجريبية", "(S3) استخدام البرمجيات الحاسوبية والتقنيات الرقمية في المحاكاة ومعالجة البيانات الفيزيائية", "(S4) التواصل العلمي الفعال شفهياً وتحريرياً لعرض النتائج والأبحاث الفيزيائية", "(V1) الالتزام بالنزاهة الأكاديمية وأخلاقيات المهنة والمسؤولية المجتمعية", "(V2) العمل بفاعلية ضمن فريق بحثي أو مهني وتحمل المسؤولية القيادية", "(V3) المبادرة للتعلم الذاتي المستمر وتطوير المهارات المهنية والعلمية"], "baseline_pct": 90.5, "sample": {"target": 48, "resp": 39, "rate": "81.3%", "m_resp": 18, "f_resp": 21, "prev_pct": 87.0}}, {"id": "phys_surv_16", "seq": 16, "category_key": "staff", "category_title": "خامسًا: استبانات الموظفين وفنيي مختبرات الفيزياء", "target_group": "الكادر الإداري وفنيو مختبرات قسم الفيزياء", "color": "#5B2C6F", "icon": "🔬", "page_file": "staff.html", "title": "تقييم رضا الموظفين الإداريين وفنيي مختبرات الفيزياء عن بيئة العمل", "desc": "قياس رضا الكادر الإداري والفني بقسم الفيزياء والكلية الجامعية بالقنفذة عن بيئة العمل والتجهيزات والتطوير المهني", "extra_field_spec": "طبيعة العمل بالقسم: فني مختبر فيزياء | إداري / سكرتارية القسم | مشرف سلامة وتجهيزات معملية", "questions": ["وضوح المهام والمسؤوليات الوظيفية للكادر الإداري وفنيي مختبرات الفيزياء", "فاعلية التواصل والتعاون بين إدارة قسم الفيزياء والموظفين والفنيين", "عدالة توزيع أعباء العمل الإداري والإشراف الفني على المعامل", "كفاية التجهيزات المكتبية والتقنية اللازمة لإنجاز المعاملات الإدارية", "توافر اشتراطات الأمن والسلامة المهنية ومعدات الوقاية في مختبرات الفيزياء", "انتظام أعمال الصيانة الدورية والمعايرة لأجهزة مختبرات الفيزياء", "توافر قطع الغيار والمواد الاستهلاكية اللازمة لتشغيل تجارب الفيزياء", "إتاحة الدورات التدريبية لتطوير مهارات الفنيين والإداريين", "كفاءة الأنظمة الإلكترونية الجامعية في تسهيل الإجراءات الإدارية", "التقدير والتحفيز المعنوي من إدارة القسم والكلية لجهود الموظفين والفنيين", "ملاءمة بيئة العمل المادية (الإضاءة، التكييف، النظافة) في المكاتب والمعامل", "الرضا الوظيفي العام عن العمل في قسم الفيزياء بالكلية الجامعية بالقنفذة"], "baseline_pct": 88.7, "sample": {"target": 14, "resp": 13, "rate": "92.9%", "m_resp": 7, "f_resp": 6, "prev_pct": 85.4}}];
+const PLAN47_LEVELS = [{"level": 1, "title": "المستوى الأول (Level 1)", "subtitle": "السنة الأولى — الفصل الأول · 7 مقررات إجبارية (19 ساعة معتمدة)", "total_hours": 19, "color": "#12776B", "courses": [{"code": "PHYS1101T", "name_ar": "فيزياء عامة ١", "name_en": "General Physics 1", "hours": 3, "type": "متطلب كلية إجباري", "prereq": "—", "has_lab": true}, {"code": "MTH1101T", "name_ar": "التفاضل والتكامل ١", "name_en": "Calculus 1", "hours": 3, "type": "متطلب كلية إجباري", "prereq": "—", "has_lab": false}, {"code": "MTH1401T", "name_ar": "الجبر الخطي ١", "name_en": "Linear Algebra 1", "hours": 4, "type": "متطلب برنامج إجباري", "prereq": "—", "has_lab": false}, {"code": "MTH1131T", "name_ar": "مقدمة في الفيزياء الرياضية", "name_en": "Introduction to Mathematical Physics", "hours": 2, "type": "متطلب برنامج إجباري", "prereq": "—", "has_lab": false}, {"code": "ELIN1301T", "name_ar": "اللغة الإنجليزية (١)", "name_en": "English Language 1", "hours": 3, "type": "متطلب كلية إجباري", "prereq": "—", "has_lab": false}, {"code": "QR1101T", "name_ar": "تجويد القرآن الكريم", "name_en": "Tajweed of the Holy Quran", "hours": 2, "type": "متطلب جامعة إجباري", "prereq": "—", "has_lab": false}, {"code": "IND1101T", "name_ar": "التفكير التصميمي", "name_en": "Design Thinking", "hours": 2, "type": "متطلب جامعة إجباري", "prereq": "—", "has_lab": false}]}, {"level": 2, "title": "المستوى الثاني (Level 2)", "subtitle": "السنة الأولى — الفصل الثاني · 7 مقررات إجبارية (19 ساعة معتمدة)", "total_hours": 19, "color": "#0F6258", "courses": [{"code": "PHYS1102T", "name_ar": "فيزياء عامة ٢", "name_en": "General Physics 2", "hours": 4, "type": "متطلب برنامج إجباري", "prereq": "PHYS1101T", "has_lab": true}, {"code": "MTH1102T", "name_ar": "التفاضل والتكامل ٢", "name_en": "Calculus 2", "hours": 4, "type": "متطلب برنامج إجباري", "prereq": "MTH1101T", "has_lab": false}, {"code": "CHM1101T", "name_ar": "الكيمياء العامة ١", "name_en": "General Chemistry 1", "hours": 3, "type": "متطلب كلية إجباري", "prereq": "—", "has_lab": true}, {"code": "BIO1101T", "name_ar": "الأحياء العامة", "name_en": "General Biology", "hours": 3, "type": "متطلب كلية إجباري", "prereq": "—", "has_lab": true}, {"code": "ELIN1302T", "name_ar": "اللغة الإنجليزية (٢)", "name_en": "English Language 2", "hours": 3, "type": "متطلب كلية إجباري", "prereq": "ELIN1301T", "has_lab": false}, {"code": "QR2102T", "name_ar": "حفظ القرآن الكريم ١", "name_en": "The Holy Quran Memorization 1", "hours": 2, "type": "متطلب جامعة إجباري", "prereq": "QR1101T", "has_lab": false}, {"code": "CUR1101T", "name_ar": "مهارات جامعية", "name_en": "University Skills", "hours": 0, "type": "متطلب جامعة إجباري", "prereq": "—", "has_lab": false}]}, {"level": 3, "title": "المستوى الثالث (Level 3)", "subtitle": "السنة الثانية — الفصل الأول · 7 مقررات إجبارية (21 ساعة معتمدة)", "total_hours": 21, "color": "#123163", "courses": [{"code": "PHYS2103T", "name_ar": "الحرارة والموجات", "name_en": "Heat and Waves", "hours": 4, "type": "متطلب برنامج إجباري", "prereq": "PHYS1102T", "has_lab": true}, {"code": "PHYS2501T", "name_ar": "ميكانيكا كلاسيكية", "name_en": "Classical Mechanics", "hours": 4, "type": "متطلب برنامج إجباري", "prereq": "PHYS1102T", "has_lab": false}, {"code": "PHYS2301T", "name_ar": "الكهربية والمغناطيسية", "name_en": "Electricity and Magnetism", "hours": 5, "type": "متطلب برنامج إجباري", "prereq": "PHYS1101T", "has_lab": true}, {"code": "MTH2132T", "name_ar": "الفيزياء الرياضية المتوسطة", "name_en": "Intermediate Mathematical Physics", "hours": 2, "type": "متطلب برنامج إجباري", "prereq": "MTH1131T", "has_lab": false}, {"code": "MTH2134T", "name_ar": "تطبيقات الفيزياء الرياضية", "name_en": "Mathematical Physics Applications", "hours": 2, "type": "متطلب برنامج إجباري", "prereq": "MTH1102T", "has_lab": false}, {"code": "QR2103T", "name_ar": "حفظ القرآن الكريم ٢", "name_en": "The Holy Quran Memorization 2", "hours": 2, "type": "متطلب جامعة إجباري", "prereq": "QR2102T", "has_lab": false}, {"code": "AI2001T", "name_ar": "مقدمة في الذكاء الاصطناعي", "name_en": "Introduction to Artificial Intelligence", "hours": 2, "type": "متطلب جامعة إجباري", "prereq": "—", "has_lab": false}]}, {"level": 4, "title": "المستوى الرابع (Level 4)", "subtitle": "السنة الثانية — الفصل الثاني · 6 مقررات إجبارية (18 ساعة معتمدة)", "total_hours": 18, "color": "#0B2545", "courses": [{"code": "PHYS2502T", "name_ar": "الميكانيكا الكلاسيكية المتقدمة", "name_en": "Advanced Classical Mechanics", "hours": 3, "type": "متطلب برنامج إجباري", "prereq": "PHYS2501T", "has_lab": false}, {"code": "PHYS2401T", "name_ar": "فيزياء حديثة", "name_en": "Modern Physics", "hours": 4, "type": "متطلب برنامج إجباري", "prereq": "PHYS2103T", "has_lab": true}, {"code": "PHYS2201T", "name_ar": "فيزياء نظرية", "name_en": "Theoretical Physics", "hours": 4, "type": "متطلب برنامج إجباري", "prereq": "PHYS2103T", "has_lab": false}, {"code": "MTH2133T", "name_ar": "الفيزياء الرياضية المتقدمة", "name_en": "Advanced Mathematical Physics", "hours": 3, "type": "متطلب برنامج إجباري", "prereq": "MTH2132T", "has_lab": false}, {"code": "QR3104T", "name_ar": "ختم القرآن الكريم", "name_en": "The Whole Holy Quran Recital", "hours": 2, "type": "متطلب جامعة إجباري", "prereq": "QR2103T", "has_lab": false}, {"code": "ICC1201T", "name_ar": "القيم والأخلاق", "name_en": "Values and Morals", "hours": 2, "type": "متطلب جامعة إجباري", "prereq": "—", "has_lab": false}]}, {"level": 5, "title": "المستوى الخامس (Level 5)", "subtitle": "السنة الثالثة — الفصل الأول · 5 مقررات تخصصية إجبارية + مقرر جامعة اختياري (19 ساعة معتمدة)", "total_hours": 19, "color": "#B08945", "courses": [{"code": "PHYS3504T", "name_ar": "ميكانيكا الكم", "name_en": "Quantum Mechanics", "hours": 4, "type": "متطلب برنامج إجباري", "prereq": "PHYS2401T", "has_lab": false}, {"code": "PHYS3402T", "name_ar": "بصريات", "name_en": "Optics", "hours": 4, "type": "متطلب برنامج إجباري", "prereq": "PHYS2401T", "has_lab": true}, {"code": "PHYS3302T", "name_ar": "كهرومغناطيسية", "name_en": "Electrodynamics", "hours": 3, "type": "متطلب برنامج إجباري", "prereq": "PHYS2201T", "has_lab": false}, {"code": "PHYS3503T", "name_ar": "ديناميكا حرارية", "name_en": "Thermodynamics", "hours": 3, "type": "متطلب برنامج إجباري", "prereq": "PHYS2103T", "has_lab": false}, {"code": "PHYS3202T", "name_ar": "الفيزياء النظرية المتقدمة", "name_en": "Advanced Theoretical Physics", "hours": 3, "type": "متطلب برنامج إجباري", "prereq": "PHYS2201T", "has_lab": false}, {"code": "SPED1102T", "name_ar": "التنوع والإنصاف والشمولية", "name_en": "Diversity, Equity and Inclusion", "hours": 2, "type": "متطلب جامعة اختياري", "prereq": "—", "has_lab": false}, {"code": "HIS4315T", "name_ar": "التراث والتنوع الثقافي", "name_en": "Heritage and Cultural Diversity", "hours": 2, "type": "متطلب جامعة اختياري", "prereq": "—", "has_lab": false}, {"code": "ARS1601T", "name_ar": "الكتابة والخطابة", "name_en": "Writing and Public Speaking", "hours": 2, "type": "متطلب جامعة اختياري", "prereq": "—", "has_lab": false}, {"code": "ECO4312T", "name_ar": "التجارة الإلكترونية", "name_en": "E-Commerce", "hours": 2, "type": "متطلب جامعة اختياري", "prereq": "—", "has_lab": false}, {"code": "FIN3703T", "name_ar": "مهارات التخطيط المالي الشخصي", "name_en": "Personal Financial Planning Skills", "hours": 2, "type": "متطلب جامعة اختياري", "prereq": "—", "has_lab": false}, {"code": "THM3191T", "name_ar": "السياحة والضيافة", "name_en": "Tourism and Hospitality", "hours": 2, "type": "متطلب جامعة اختياري", "prereq": "—", "has_lab": false}, {"code": "HP3009T", "name_ar": "الصحة المجتمعية", "name_en": "Community Health", "hours": 2, "type": "متطلب جامعة اختياري", "prereq": "—", "has_lab": false}, {"code": "BUS1098T", "name_ar": "الابتكار وريادة الأعمال", "name_en": "Innovation and Entrepreneurship", "hours": 2, "type": "متطلب جامعة اختياري", "prereq": "—", "has_lab": false}, {"code": "CS2001T", "name_ar": "التقنية الرقمية", "name_en": "Digital Technology", "hours": 2, "type": "متطلب جامعة اختياري", "prereq": "—", "has_lab": false}, {"code": "PSY3127T", "name_ar": "مهارات حياتية", "name_en": "Life Skills", "hours": 2, "type": "متطلب جامعة اختياري", "prereq": "—", "has_lab": false}]}, {"level": 6, "title": "المستوى السادس (Level 6)", "subtitle": "السنة الثالثة — الفصل الثاني · 6 مقررات إجبارية (18 ساعة معتمدة)", "total_hours": 18, "color": "#8E6B2E", "courses": [{"code": "PHYS3701T", "name_ar": "فيزياء الحالة الصلبة", "name_en": "Solid State Physics", "hours": 4, "type": "متطلب برنامج إجباري", "prereq": "PHYS3504T", "has_lab": true}, {"code": "PHYS3203T", "name_ar": "الفيزياء الحاسوبية", "name_en": "Computational Physics", "hours": 3, "type": "متطلب برنامج إجباري", "prereq": "PHYS2201T", "has_lab": true}, {"code": "PHYS3506T", "name_ar": "فيزياء إحصائية", "name_en": "Statistical Physics", "hours": 3, "type": "متطلب برنامج إجباري", "prereq": "PHYS3503T", "has_lab": false}, {"code": "PHYS3303T", "name_ar": "كهرومغناطيسية متقدمة", "name_en": "Advanced Electrodynamics", "hours": 3, "type": "متطلب برنامج إجباري", "prereq": "PHYS3302T", "has_lab": false}, {"code": "PHYS3505T", "name_ar": "ميكانيكا الكم المتقدمة", "name_en": "Advanced Quantum Mechanics", "hours": 3, "type": "متطلب برنامج إجباري", "prereq": "PHYS3504T", "has_lab": false}, {"code": "ICC4202T", "name_ar": "الأسرة في الإسلام", "name_en": "Family in Islam", "hours": 2, "type": "متطلب جامعة إجباري", "prereq": "ICC1201T", "has_lab": false}]}, {"level": 7, "title": "المستوى السابع (Level 7)", "subtitle": "السنة الرابعة — الفصل الأول (فصل التدريب الميداني التعاوني) · مقرر واحد (6 ساعات معتمدة)", "total_hours": 6, "color": "#2B580C", "courses": [{"code": "PHYS7700T", "name_ar": "التدريب التعاوني", "name_en": "Co-Op Training", "hours": 6, "type": "متطلب برنامج إجباري (تدريب ميداني)", "prereq": "موافقة القسم", "has_lab": true}]}, {"level": 8, "title": "المستوى الثامن (Level 8)", "subtitle": "السنة الرابعة — الفصل الثاني · 5 مقررات إجبارية + 6 مقررات اختيارية تخصصية يختار الطالب منها مقررين (20 ساعة معتمدة)", "total_hours": 20, "color": "#5B2C6F", "courses": [{"code": "PHYS4601T", "name_ar": "فيزياء نووية", "name_en": "Nuclear Physics", "hours": 4, "type": "متطلب برنامج إجباري", "prereq": "PHYS3504T", "has_lab": true}, {"code": "PHYS4703T", "name_ar": "إلكترونيات", "name_en": "Electronics", "hours": 4, "type": "متطلب برنامج إجباري", "prereq": "PHYS3701T", "has_lab": true}, {"code": "PHYS4702T", "name_ar": "فيزياء الحالة الصلبة المتقدمة", "name_en": "Advanced Solid State Physics", "hours": 3, "type": "متطلب برنامج إجباري", "prereq": "PHYS3701T", "has_lab": false}, {"code": "PHYS4801T", "name_ar": "مشروع التخرج", "name_en": "Final Year Project", "hours": 3, "type": "متطلب برنامج إجباري (مشروع تخرج)", "prereq": "موافقة القسم", "has_lab": true}, {"code": "BUS1099T", "name_ar": "مهارات التطوير المهني", "name_en": "Professional Development Skills", "hours": 2, "type": "متطلب جامعة إجباري", "prereq": "—", "has_lab": false}, {"code": "PHYS4605T", "name_ar": "مقدمة في الفيزياء الطبية", "name_en": "Introduction to Medical Physics", "hours": 2, "type": "متطلب برنامج اختياري", "prereq": "PHYS2401T", "has_lab": false}, {"code": "PHYS4705T", "name_ar": "الطاقة المتجددة", "name_en": "Renewable Energy", "hours": 2, "type": "متطلب برنامج اختياري", "prereq": "PHYS3701T", "has_lab": false}, {"code": "PHYS4706T", "name_ar": "مقدمة في تقنية النانو", "name_en": "Introduction to Nanotechnology", "hours": 2, "type": "متطلب برنامج اختياري", "prereq": "PHYS3701T", "has_lab": false}, {"code": "PHYS4602T", "name_ar": "تقنية نووية", "name_en": "Nuclear Technology", "hours": 2, "type": "متطلب برنامج اختياري", "prereq": "PHYS4601T", "has_lab": false}, {"code": "PHYS4603T", "name_ar": "فيزياء إشعاعية", "name_en": "Radiation Physics", "hours": 2, "type": "متطلب برنامج اختياري", "prereq": "PHYS4601T", "has_lab": false}, {"code": "PHYS4404T", "name_ar": "ضوئيات", "name_en": "Photonics", "hours": 2, "type": "متطلب برنامج اختياري", "prereq": "PHYS3402T", "has_lab": false}]}];
+const CES_QUESTIONS = ["أهداف المقرر ومخرجات التعلم كانت واضحة منذ بداية الفصل الدراسي", "محتوى المقررات الفيزيائية حديث ومتسق مع الخطة الدراسية وتوصيف المقرر", "أساليب التدريس المستخدمة عززت الفهم العميق للمفاهيم والظواهر الفيزيائية", "الاختبارات وأدوات التقييم كانت عادلة وشاملة لمخرجات تعلم المقرر", "التجارب العملية في مختبرات الفيزياء مرتبطة بوضوح بالجانب النظري للمقررات", "أدلة التجارب المعملية واضحة وتساعد على تنفيذ القياسات الفيزيائية وتحليل الأخطاء", "تتوفر إجراءات وأدوات السلامة المختبرية في معامل قسم الفيزياء بشكل كافٍ", "كفاية وحداثة الأجهزة وأدوات القياس في مختبرات الفيزياء التخصصية (الضوء، النووية، الجوامد)", "توظيف البرمجيات الفيزيائية والمحاكاة الحاسوبية في تدريس المقررات والمعامل", "الرضا العام عن جودة المقررات الدراسية في برنامج الفيزياء"];
+
+const DEDICATED_PORTALS = [
+  { key: "students",  icon: "🎓", title: "صنف الطلاب والطالبات (الاستبانات العامة + المقررات)", file: "students.html",  color: "#12776B" },
+  { key: "courses",   icon: "📚", title: "استبانات تقويم مقررات خطة 47 (المستويات 1 إلى 8)",   file: "courses.html",   color: "#123163" },
+  { key: "faculty",   icon: "👨‍🏫", title: "صنف أعضاء هيئة التدريس (6 استبانات)",                file: "faculty.html",   color: "#B08945" },
+  { key: "graduates", icon: "🎖️", title: "صنف الخريجين والخريجات (استبانة الخريجين + PLOs)",    file: "graduates.html", color: "#2B580C" },
+  { key: "employers", icon: "🏢", title: "صنف أرباب العمل وجهات التوظيف والتدريب",             file: "employers.html", color: "#0B2A4A" },
+  { key: "staff",     icon: "🔬", title: "صنف الموظفين الإداريين وفنيي مختبرات الفيزياء",       file: "staff.html",     color: "#5B2C6F" }
+];
+
+const LIKERT_CHOICES = [
+  { val: 5, txt: "موافق بشدة" },
+  { val: 4, txt: "موافق" },
+  { val: 3, txt: "محايد" },
+  { val: 2, txt: "غير موافق" },
+  { val: 1, txt: "غير موافق بشدة" }
+];
+
+const STORAGE_SCHED_KEY = "uqu_qunfudhah_physics_survey_schedule_v2";
+const STORAGE_RESP_KEY  = "uqu_qunfudhah_physics_survey_responses_v1";
+
+const TERM_LABELS = {
+  "471": "الفصل الدراسي الأول 1447هـ (471)",
+  "472": "الفصل الدراسي الثاني 1447هـ (472)",
+  "481": "الفصل الدراسي الأول 1448هـ (481)",
+  "482": "الفصل الدراسي الثاني 1448هـ (482)"
+};
+
+function getTermLabel(t) {
+  return TERM_LABELS[t] || t || "الفصل الدراسي الثاني 1447هـ (472)";
+}
+
+let currentCategory = PAGE_MODE;
+let currentLevelFilter = "all";
+let currentSurvey = null;
+let currentCourseObj = null;
+let scheduleState = loadSchedule();
+
+function getDefaultSchedule() {
+  const now = new Date();
+  const start = new Date(now.getTime() - 7 * 24 * 3600 * 1000);
+  const end   = new Date(now.getTime() + 30 * 24 * 3600 * 1000);
+  return {
+    startISO: toLocalISOInput(start),
+    endISO: toLocalISOInput(end),
+    term: "472"
+  };
+}
+
+function toLocalISOInput(d) {
+  const pad = n => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function formatArabicDateTime(isoStr) {
+  if (!isoStr) return "—";
+  const d = new Date(isoStr);
+  if (isNaN(d.getTime())) return isoStr;
+  return d.toLocaleString('ar-SA', {
+    year: 'numeric', month: 'short', day: 'numeric',
+    hour: '2-digit', minute: '2-digit'
+  });
+}
+
+function loadSchedule() {
+  const params = new URLSearchParams(window.location.search);
+  let saved = null;
+  try {
+    saved = JSON.parse(localStorage.getItem(STORAGE_SCHED_KEY));
+  } catch(e) {}
+  const def = saved || getDefaultSchedule();
+  const pFrom = params.get('from') || params.get('start');
+  const pTo   = params.get('to')   || params.get('end');
+  const pTerm = params.get('t')    || params.get('term');
+  if (pFrom) def.startISO = pFrom.length === 10 ? pFrom + 'T00:00' : pFrom;
+  if (pTo)   def.endISO   = pTo.length === 10   ? pTo   + 'T23:59' : pTo;
+  if (pTerm) def.term     = pTerm;
+  return def;
+}
+
+function getWindowStatus() {
+  const now = new Date();
+  const s = new Date(scheduleState.startISO);
+  const e = new Date(scheduleState.endISO);
+  if (now < s) return { state: "upcoming", diffMs: s - now, targetDate: s };
+  if (now > e) return { state: "closed",   diffMs: 0,       targetDate: e };
+  return { state: "open", diffMs: e - now, targetDate: e };
+}
+
+function getScheduleQueryTail() {
+  const sDateOnly = (scheduleState.startISO || '').slice(0, 10);
+  const eDateOnly = (scheduleState.endISO || '').slice(0, 10);
+  const parts = [];
+  if (sDateOnly) parts.push('from=' + sDateOnly);
+  if (eDateOnly) parts.push('to=' + eDateOnly);
+  if (scheduleState.term) parts.push('t=' + encodeURIComponent(scheduleState.term));
+  return parts.join('&');
+}
+
+function buildFullShareUrl(fileName, extraParams) {
+  const tail = getScheduleQueryTail();
+  const allParams = [extraParams, tail].filter(Boolean).join('&');
+  return PUBLIC_BASE_DIR + fileName + (allParams ? ('?' + allParams) : '');
+}
+
+function updateScheduleBanner() {
+  const card  = document.getElementById('scheduleCard');
+  const badge = document.getElementById('statusBadge');
+  const ws = getWindowStatus();
+
+  document.getElementById('lblStartDate').textContent = formatArabicDateTime(scheduleState.startISO);
+  document.getElementById('lblEndDate').textContent   = formatArabicDateTime(scheduleState.endISO);
+  document.getElementById('lblTerm').textContent      = getTermLabel(scheduleState.term);
+
+  card.classList.remove('status-open', 'status-upcoming', 'status-closed');
+  card.classList.add('status-' + ws.state);
+
+  if (ws.state === 'open') {
+    badge.innerHTML = '🟢 الاستبيان متاح حالياً لاستقبال الردود';
+  } else if (ws.state === 'upcoming') {
+    badge.innerHTML = '🟡 لم يبدأ موعد الاستبيان بعد (يفتح قريباً)';
+  } else {
+    badge.innerHTML = '🔴 انتهى موعد الاستبيان (مغلق حالياً)';
+  }
+
+  const totalSec = Math.max(0, Math.floor(ws.diffMs / 1000));
+  const days  = Math.floor(totalSec / 86400);
+  const hours = Math.floor((totalSec % 86400) / 3600);
+  const mins  = Math.floor((totalSec % 3600) / 60);
+  const secs  = totalSec % 60;
+
+  document.getElementById('cdDays').textContent  = String(days).padStart(2, '0');
+  document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('cdMins').textContent  = String(mins).padStart(2, '0');
+  document.getElementById('cdSecs').textContent  = String(secs).padStart(2, '0');
+
+  if (currentSurvey && document.getElementById('viewForm').classList.contains('active')) {
+    applyFormLockState(ws.state);
+  }
+}
+
+function applyFormLockState(state) {
+  const lockCard = document.getElementById('lockCard');
+  const formEl   = document.getElementById('activeSurveyForm');
+  const tyCard   = document.getElementById('thankyouCard');
+  if (tyCard.classList.contains('show')) return;
+
+  if (state === 'open') {
+    lockCard.classList.remove('show');
+    formEl.style.display = 'block';
+  } else {
+    formEl.style.display = 'none';
+    lockCard.classList.add('show');
+    if (state === 'upcoming') {
+      document.getElementById('lockIcon').textContent = '🕒';
+      document.getElementById('lockTitle').textContent = 'لم يبدأ موعد فتح هذا الاستبيان بعد';
+      document.getElementById('lockDesc').innerHTML = `سيتم فتح الاستبيان لاستقبال ردود ذوي العلاقة ابتداءً من:<br><strong>${formatArabicDateTime(scheduleState.startISO)}</strong><br>وحتى: <strong>${formatArabicDateTime(scheduleState.endISO)}</strong>.`;
+    } else {
+      document.getElementById('lockIcon').textContent = '🔒';
+      document.getElementById('lockTitle').textContent = 'انتهت فترة استقبال الردود لهذا الاستبيان';
+      document.getElementById('lockDesc').innerHTML = `لقد أُغلق هذا الاستبيان بتاريخ: <strong>${formatArabicDateTime(scheduleState.endISO)}</strong>.<br>يرجى التواصل مع لجنة الجودة والاعتماد الأكاديمي بقسم الفيزياء بالكلية الجامعية بالقنفذة في حال الرغبة في تمديد الفترة.`;
+    }
+  }
+}
+
+function renderDedicatedCategoryLinksHub() {
+  const grid = document.getElementById('dedicatedCatLinksGrid');
+  if (!grid) return;
+  grid.innerHTML = DEDICATED_PORTALS.map(p => {
+    const url = PUBLIC_BASE_DIR + p.file;
+    return `
+      <div class="cat-link-item" style="border-right-color:${p.color}">
+        <div class="cat-link-meta">
+          <div class="cat-link-title">${p.icon} ${p.title}</div>
+          <div class="cat-link-url">${url}</div>
+        </div>
+        <div class="cat-link-actions">
+          <button class="btn btn-primary" style="padding:5px 11px;font-size:11.5px;background:${p.color}" onclick="copyDirectText('${url}', 'تم نسخ الرابط الخاص بصنف: ${p.title}')">📋 نسخ</button>
+          <a class="btn btn-gold" style="padding:5px 11px;font-size:11.5px;" href="${p.file}" target="_blank">↗️ فتح</a>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function copyDirectText(txt, msg) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(txt);
+    alert(msg || ("تم نسخ الرابط بنجاح:\n" + txt));
+  }
+}
+
+function initAdminInputs() {
+  document.getElementById('inpStart').value = scheduleState.startISO;
+  document.getElementById('inpEnd').value   = scheduleState.endISO;
+  document.getElementById('inpTerm').value  = scheduleState.term;
+
+  const sel = document.getElementById('inpTargetSurvey');
+  let optsHtml = '<optgroup label="🌐 روابط الأصناف المستقلة (رابط خاص لكل صنف)">';
+  DEDICATED_PORTALS.forEach(p => {
+    optsHtml += `<option value="PORTAL:${p.file}">${p.icon} رابط خاص: ${p.title}</option>`;
+  });
+  optsHtml += '</optgroup>';
+
+  optsHtml += '<optgroup label="📚 روابط المستويات الدراسية (خطة الفيزياء 47)">';
+  PLAN47_LEVELS.forEach(lv => {
+    optsHtml += `<option value="LEVEL:${lv.level}">📚 رابط استبانات مقررات ${lv.title}</option>`;
+  });
+  optsHtml += '</optgroup>';
+
+  optsHtml += '<optgroup label="📋 روابط الاستبانات الفردية">';
+  SURVEYS.forEach(s => {
+    optsHtml += `<option value="SURV:${s.id}">(${String(s.seq).padStart(2,'0')}) ${s.title}</option>`;
+  });
+  optsHtml += '</optgroup>';
+
+  sel.innerHTML = optsHtml;
+  updateGeneratedShareUrl();
+}
+
+function saveScheduleSettings() {
+  const sVal = document.getElementById('inpStart').value;
+  const eVal = document.getElementById('inpEnd').value;
+  const tVal = document.getElementById('inpTerm').value;
+  if (!sVal || !eVal) return;
+  if (new Date(eVal) <= new Date(sVal)) {
+    alert("تاريخ انتهاء الاستبيان يجب أن يكون بعد تاريخ البداية.");
+    return;
+  }
+  scheduleState = { startISO: sVal, endISO: eVal, term: tVal };
+  localStorage.setItem(STORAGE_SCHED_KEY, JSON.stringify(scheduleState));
+  updateScheduleBanner();
+  renderDirectory();
+  updateGeneratedShareUrl();
+}
+
+function setQuickWindow(mode) {
+  const now = new Date();
+  if (mode === 'open30') {
+    scheduleState.startISO = toLocalISOInput(new Date(now.getTime() - 3600 * 1000));
+    scheduleState.endISO   = toLocalISOInput(new Date(now.getTime() + 30 * 24 * 3600 * 1000));
+  } else if (mode === 'upcoming') {
+    scheduleState.startISO = toLocalISOInput(new Date(now.getTime() + 2 * 24 * 3600 * 1000));
+    scheduleState.endISO   = toLocalISOInput(new Date(now.getTime() + 32 * 24 * 3600 * 1000));
+  } else if (mode === 'closed') {
+    scheduleState.startISO = toLocalISOInput(new Date(now.getTime() - 30 * 24 * 3600 * 1000));
+    scheduleState.endISO   = toLocalISOInput(new Date(now.getTime() - 60 * 1000));
+  }
+  document.getElementById('inpStart').value = scheduleState.startISO;
+  document.getElementById('inpEnd').value   = scheduleState.endISO;
+  localStorage.setItem(STORAGE_SCHED_KEY, JSON.stringify(scheduleState));
+  updateScheduleBanner();
+  renderDirectory();
+  updateGeneratedShareUrl();
+}
+
+function updateGeneratedShareUrl() {
+  const val = document.getElementById('inpTargetSurvey').value || '';
+  let url = PUBLIC_BASE_DIR + PAGE_FILENAME;
+  if (val.startsWith('PORTAL:')) {
+    const file = val.split(':')[1];
+    url = buildFullShareUrl(file, '');
+  } else if (val.startsWith('LEVEL:')) {
+    const lv = val.split(':')[1];
+    url = buildFullShareUrl('courses.html', 'level=' + lv);
+  } else if (val.startsWith('SURV:')) {
+    const sid = val.split(':')[1];
+    const sObj = SURVEYS.find(x => x.id === sid);
+    if (sObj) {
+      url = buildFullShareUrl(sObj.page_file, 'q=' + sObj.seq);
+    }
+  }
+  document.getElementById('generatedShareUrl').textContent = url;
+}
+
+function openGeneratedShareUrl() {
+  const url = document.getElementById('generatedShareUrl').textContent;
+  if (url && url !== '—') window.open(url, '_blank');
+}
+
+function copyShareUrl() {
+  const txt = document.getElementById('generatedShareUrl').textContent;
+  copyDirectText(txt, "تم نسخ الرابط مع فترة البداية والانتهاء بنجاح!");
+}
+
+function toggleAdminPanel() {
+  document.getElementById('adminPanel').classList.toggle('show');
+}
+
+function filterCategory(cat) {
+  currentCategory = cat;
+  document.querySelectorAll('.cat-tab').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+  renderDirectory();
+}
+
+function getSavedResponses() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_RESP_KEY)) || [];
+  } catch(e) {
+    return [];
+  }
+}
+
+function renderDirectory() {
+  const grid = document.getElementById('surveyCardsGrid');
+  const planSec = document.getElementById('plan47Section');
+  const resps = getSavedResponses();
+  document.getElementById('respCountBadge').textContent = resps.length;
+  const ws = getWindowStatus();
+
+  // Decide whether to show general survey cards and/or Plan 47 course evaluation levels
+  const showCoursesSection = (currentCategory === 'all' || currentCategory === 'students' || currentCategory === 'courses');
+  planSec.style.display = showCoursesSection ? 'block' : 'none';
+
+  if (currentCategory === 'courses') {
+    grid.style.display = 'none';
+  } else {
+    grid.style.display = 'grid';
+    let list = SURVEYS;
+    if (currentCategory !== 'all') {
+      list = SURVEYS.filter(s => s.category_key === currentCategory);
+    }
+    // For students, Survey #6 is now expanded into the 8 levels of Plan 47 below, keep general student surveys 1..5 in cards
+    if (currentCategory === 'students') {
+      list = list.filter(s => s.seq !== 6);
+    }
+
+    grid.innerHTML = list.map(s => {
+      const countForThis = resps.filter(r => r.survey_id === s.id).length;
+      const statusText = ws.state === 'open'
+        ? '<span style="color:var(--teal);font-weight:700;">🟢 متاح للتعبئة</span>'
+        : (ws.state === 'upcoming' ? '<span style="color:var(--gold);font-weight:700;">🟡 يفتح قريباً</span>' : '<span style="color:var(--coral);font-weight:700;">🔴 مغلق</span>');
+      const directUrl = buildFullShareUrl(s.page_file, 'q=' + s.seq);
+
+      return `
+        <div class="survey-dir-card" style="border-top-color:${s.color}">
+          <div>
+            <div class="sdc-head">
+              <span class="sdc-num">${s.icon} استبانة رقم ${String(s.seq).padStart(2,'0')}</span>
+              ${statusText}
+            </div>
+            <h3 class="sdc-title">${s.title}</h3>
+            <p class="sdc-desc">${s.desc}</p>
+          </div>
+          <div>
+            <div class="sdc-footer">
+              <span>عدد البنود: <strong>${s.questions.length}</strong></span>
+              <span>الردود المسجلة: <strong>${countForThis}</strong></span>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:6px;">
+              <button class="btn btn-primary" style="flex:1;justify-content:center;background:${s.color}" onclick="openSurveyForm('${s.id}')">
+                📝 فتح وتعبئة الاستبانة
+              </button>
+              <button class="btn btn-outline-light" style="color:var(--ink);border-color:var(--border);background:#F8FAFC;" onclick="copyDirectText('${directUrl}', 'تم نسخ الرابط الخاص بهذه الاستبانة!')" title="نسخ رابط مباشر لهذه الاستبانة">
+                🔗 نسخ الرابط
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  if (showCoursesSection) {
+    renderLevelPills();
+    renderPlan47Levels();
+  }
+}
+
+function renderLevelPills() {
+  const bar = document.getElementById('levelPillsBar');
+  if (!bar) return;
+  let html = `<button class="level-pill-btn ${currentLevelFilter === 'all' ? 'active' : ''}" onclick="setLevelFilter('all')">🌐 جميع المستويات (1 – 8)</button>`;
+  PLAN47_LEVELS.forEach(lv => {
+    html += `<button class="level-pill-btn ${String(currentLevelFilter) === String(lv.level) ? 'active' : ''}" onclick="setLevelFilter(${lv.level})">المستوى ${lv.level} (${lv.courses.length})</button>`;
+  });
+  bar.innerHTML = html;
+}
+
+function setLevelFilter(lv) {
+  currentLevelFilter = lv;
+  renderLevelPills();
+  renderPlan47Levels();
+}
+
+function renderPlan47Levels() {
+  const container = document.getElementById('plan47LevelsContainer');
+  if (!container) return;
+  const q = (document.getElementById('inpCourseSearch')?.value || '').trim().toLowerCase();
+  const resps = getSavedResponses();
+
+  const levelsToShow = currentLevelFilter === 'all'
+    ? PLAN47_LEVELS
+    : PLAN47_LEVELS.filter(l => String(l.level) === String(currentLevelFilter));
+
+  container.innerHTML = levelsToShow.map(lv => {
+    const filteredCourses = lv.courses.filter(c => {
+      if (!q) return true;
+      return c.code.toLowerCase().includes(q) || c.name_ar.toLowerCase().includes(q) || c.name_en.toLowerCase().includes(q);
+    });
+    if (filteredCourses.length === 0) return '';
+
+    const levelShareUrl = buildFullShareUrl('courses.html', 'level=' + lv.level);
+
+    return `
+      <div class="level-block" id="level_block_${lv.level}">
+        <div class="level-block-header" style="background:linear-gradient(90deg, ${lv.color}, #0B2545);">
+          <div>
+            <h3>
+              <span>🎓 ${lv.title}</span>
+              <span class="level-badge">${lv.courses.length} مقررات · ${lv.total_hours} ساعة معتمدة</span>
+            </h3>
+            <div style="font-size:12px;color:rgba(255,255,255,0.85);margin-top:3px;">${lv.subtitle}</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-gold" style="font-size:11.5px;padding:5px 12px;" onclick="copyDirectText('${levelShareUrl}', 'تم نسخ الرابط الخاص باستبانات ${lv.title}!')">
+              🔗 نسخ رابط ${lv.title}
+            </button>
+          </div>
+        </div>
+        <div class="level-courses-grid">
+          ${filteredCourses.map(c => {
+            const isElective = c.type.includes('اختياري');
+            const courseRespCount = resps.filter(r => r.course_code === c.code).length;
+            const courseShareUrl = buildFullShareUrl('courses.html', 'c=' + c.code);
+            return `
+              <div class="course-card ${isElective ? 'elective' : ''}">
+                <div>
+                  <div class="cc-top">
+                    <span class="cc-code">${c.code}</span>
+                    <span class="cc-hours">${c.hours} ساعات · ${c.type}</span>
+                  </div>
+                  <h4 class="cc-name-ar">${c.name_ar}</h4>
+                  <p class="cc-name-en">${c.name_en}</p>
+                </div>
+                <div>
+                  <div class="cc-meta">
+                    <span>المتطلب: <strong>${c.prereq}</strong></span>
+                    <span>الردود: <strong>${courseRespCount}</strong></span>
+                  </div>
+                  <div class="cc-actions">
+                    <button class="btn btn-primary" style="flex:1;justify-content:center;font-size:12px;padding:6px 10px;background:${lv.color}" onclick="openCourseEvaluationForm('${c.code}')">
+                      📝 استبانة تقويم المقرر
+                    </button>
+                    <button class="btn btn-outline-light" style="color:var(--ink);border-color:var(--border);background:#F8FAFC;font-size:11.5px;padding:6px 10px;" onclick="copyDirectText('${courseShareUrl}', 'تم نسخ رابط استبانة مقرر ${c.name_ar} (${c.code})!')" title="نسخ رابط استبانة هذا المقرر">
+                      🔗 الرابط
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function findCourseByCode(code) {
+  for (const lv of PLAN47_LEVELS) {
+    for (const c of lv.courses) {
+      if (c.code.toUpperCase() === String(code).toUpperCase()) {
+        return { ...c, level: lv.level, level_title: lv.title, level_color: lv.color };
+      }
+    }
+  }
+  return null;
+}
+
+function openCourseEvaluationForm(courseCode) {
+  const cObj = findCourseByCode(courseCode);
+  if (!cObj) return;
+  currentCourseObj = cObj;
+
+  // Build a specialized survey object for this Plan 47 course based on Survey #6 (CES)
+  const baseCes = SURVEYS.find(x => x.seq === 6) || SURVEYS[0];
+  currentSurvey = {
+    ...baseCes,
+    id: `CES_${cObj.code}`,
+    title: `استبانة تقويم مقرر: ${cObj.name_ar} (${cObj.code})`,
+    desc: `الخطة الدراسية الموحدة (خطة 47) — ${cObj.level_title} — (${cObj.hours} ساعات معتمدة · ${cObj.type}) — ${cObj.name_en}`,
+    color: cObj.level_color,
+    extra_field_spec: `المستوى الدراسي والشعبة: ${cObj.level_title} (شعبة نظري) | ${cObj.level_title} (شعبة عملي / معمل) | طالب متوقع تخرجه`
+  };
+
+  renderActiveSurveyForm(currentSurvey, `${cObj.code} — ${cObj.name_ar} (${cObj.level_title})`);
+}
+
+function openSurveyForm(surveyId) {
+  const s = SURVEYS.find(x => x.id === surveyId);
+  if (!s) return;
+  currentCourseObj = null;
+  currentSurvey = s;
+  renderActiveSurveyForm(s, "");
+}
+
+function renderActiveSurveyForm(s, prefilledCourseText) {
+  document.documentElement.style.setProperty('--accent', s.color);
+  document.getElementById('formEyebrow').textContent = currentCourseObj
+    ? `تقويم مقررات الخطة 47 · ${currentCourseObj.level_title} · كود المقرر (${currentCourseObj.code})`
+    : `${s.category_title} · استبانة رقم (${String(s.seq).padStart(2,'0')})`;
+  document.getElementById('formTitle').textContent = s.title;
+  document.getElementById('formDesc').textContent = s.desc;
+  document.getElementById('formTargetBadge').textContent = `الفئة المستهدفة: ${s.target_group}`;
+  document.getElementById('formDeadlineBadge').textContent = `متاح حتى: ${formatArabicDateTime(scheduleState.endISO)}`;
+
+  const parts = s.extra_field_spec.split(':');
+  document.getElementById('extraFieldLabel').textContent = parts[0].trim();
+  const opts = parts[1].split('|').map(x => x.trim());
+  document.getElementById('extraFieldOptions').innerHTML = opts.map((opt, idx) => `
+    <div class="demo-pill">
+      <input type="radio" name="resp_extra" id="ex_${idx}" value="${opt}" ${idx === 0 && currentCourseObj ? 'checked' : ''} required onchange="updateFormProgress()">
+      <label for="ex_${idx}">${opt}</label>
+    </div>
+  `).join('');
+
+  const cWrap = document.getElementById('courseNameWrap');
+  const cInp  = document.getElementById('inpCourseName');
+  if (currentCourseObj || s.seq === 6) {
+    cWrap.style.display = 'block';
+    cInp.value = prefilledCourseText || '';
+    cInp.readOnly = Boolean(currentCourseObj);
+  } else {
+    cWrap.style.display = 'none';
+    cInp.value = '';
+    cInp.readOnly = false;
+  }
+
+  const qWrap = document.getElementById('questionsContainer');
+  qWrap.innerHTML = s.questions.map((qText, qIdx) => `
+    <div class="gform-card" id="qcard_${qIdx}">
+      <h3 class="q-title">
+        <span class="q-num-badge">${qIdx + 1}</span>
+        ${qText}
+        <span class="req-star">*</span>
+      </h3>
+      <div class="likert-scale">
+        ${LIKERT_CHOICES.map(ch => `
+          <div class="likert-opt">
+            <input type="radio" name="q_${qIdx}" id="q_${qIdx}_${ch.val}" value="${ch.val}" required onchange="updateFormProgress()">
+            <label class="likert-lbl" for="q_${qIdx}_${ch.val}">
+              <span class="likert-val">${ch.val}</span>
+              <span class="likert-txt">${ch.txt}</span>
+            </label>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('activeSurveyForm').reset();
+  if (prefilledCourseText) {
+    cInp.value = prefilledCourseText;
+    const firstEx = document.getElementById('ex_0');
+    if (firstEx) firstEx.checked = true;
+  }
+  document.getElementById('thankyouCard').classList.remove('show');
+  switchView('form');
+  updateFormProgress();
+  applyFormLockState(getWindowStatus().state);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function copyCurrentFormDirectLink() {
+  if (!currentSurvey) return;
+  let url = '';
+  if (currentCourseObj) {
+    url = buildFullShareUrl('courses.html', 'c=' + currentCourseObj.code);
+  } else {
+    url = buildFullShareUrl(currentSurvey.page_file || 'forms.html', 'q=' + currentSurvey.seq);
+  }
+  copyDirectText(url, "تم نسخ الرابط المباشر لهذه الاستبانة!");
+}
+
+function updateFormProgress() {
+  if (!currentSurvey) return;
+  const totalQ = currentSurvey.questions.length + 2;
+  let answered = 0;
+  if (document.querySelector('input[name="resp_gender"]:checked')) answered++;
+  if (document.querySelector('input[name="resp_extra"]:checked')) answered++;
+
+  currentSurvey.questions.forEach((_, idx) => {
+    if (document.querySelector(`input[name="q_${idx}"]:checked`)) {
+      answered++;
+    }
+  });
+
+  const pct = Math.round((answered / totalQ) * 100);
+  document.getElementById('fpCountText').textContent = `تمت الإجابة على ${answered} من ${totalQ}`;
+  document.getElementById('fpPctText').textContent = `${pct}%`;
+  document.getElementById('fpFill').style.width = `${pct}%`;
+}
+
+function resetCurrentForm() {
+  if (confirm("هل أنت متأكد من مسح جميع الإجابات المختارة في هذا النموذج؟")) {
+    const savedCourseVal = document.getElementById('inpCourseName').value;
+    document.getElementById('activeSurveyForm').reset();
+    if (currentCourseObj) document.getElementById('inpCourseName').value = savedCourseVal;
+    updateFormProgress();
+  }
+}
+
+function submitSurveyForm(e) {
+  e.preventDefault();
+  const ws = getWindowStatus();
+  if (ws.state !== 'open') {
+    applyFormLockState(ws.state);
+    return;
+  }
+
+  const gender = document.querySelector('input[name="resp_gender"]:checked')?.value || "غير محدد";
+  const extra  = document.querySelector('input[name="resp_extra"]:checked')?.value || "";
+  const course = document.getElementById('inpCourseName').value.trim();
+  const notes  = document.getElementById('inpOpenNotes').value.trim();
+
+  const scores = [];
+  currentSurvey.questions.forEach((qText, idx) => {
+    const v = parseInt(document.querySelector(`input[name="q_${idx}"]:checked`).value, 10);
+    scores.push({ q_index: idx + 1, question: qText, score: v });
+  });
+
+  const avgScore = (scores.reduce((a, b) => a + b.score, 0) / scores.length);
+  const pctScore = (avgScore / 5) * 100;
+
+  const record = {
+    response_id: 'RESP-' + Date.now(),
+    timestamp: new Date().toISOString(),
+    term: scheduleState.term,
+    survey_id: currentSurvey.id,
+    survey_seq: currentSurvey.seq,
+    survey_title: currentSurvey.title,
+    category: currentSurvey.category_title,
+    gender: gender,
+    classification: extra,
+    course_code: currentCourseObj ? currentCourseObj.code : "",
+    course_level: currentCourseObj ? currentCourseObj.level : "",
+    course_name: course,
+    avg_score: Number(avgScore.toFixed(2)),
+    satisfaction_pct: Number(pctScore.toFixed(1)),
+    notes: notes,
+    answers: scores
+  };
+
+  const allResps = getSavedResponses();
+  allResps.push(record);
+  localStorage.setItem(STORAGE_RESP_KEY, JSON.stringify(allResps));
+  document.getElementById('respCountBadge').textContent = allResps.length;
+
+  document.getElementById('activeSurveyForm').style.display = 'none';
+  document.getElementById('submittedScoreSummary').textContent =
+    `متوسط تقييمك في هذه الاستبانة: ${avgScore.toFixed(2)} من 5 (${pctScore.toFixed(1)}%)`;
+  document.getElementById('thankyouCard').classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function reopenSameForm() {
+  if (currentCourseObj) {
+    openCourseEvaluationForm(currentCourseObj.code);
+  } else if (currentSurvey) {
+    openSurveyForm(currentSurvey.id);
+  }
+}
+
+function switchView(viewName) {
+  document.getElementById('viewDirectory').style.display = (viewName === 'directory') ? 'block' : 'none';
+  document.getElementById('viewForm').classList.toggle('active', viewName === 'form');
+  document.getElementById('viewResponses').classList.toggle('show', viewName === 'responses');
+
+  document.getElementById('btnShowDirectory').classList.toggle('active', viewName === 'directory');
+  document.getElementById('btnShowResponses').classList.toggle('active', viewName === 'responses');
+
+  if (viewName === 'directory') renderDirectory();
+  if (viewName === 'responses') renderResponsesView();
+}
+
+function renderResponsesView() {
+  const resps = getSavedResponses();
+  const wrap = document.getElementById('responsesSummaryContent');
+  if (resps.length === 0) {
+    wrap.innerHTML = `<div style="text-align:center;padding:36px;color:var(--text-muted);background:var(--bg);border-radius:10px;">
+      لا توجد ردود مسجلة في المتصفح حتى الآن. قم بفتح أي استبانة أو مقرر وتعبئته لتظهر نتائجه وإحصاءاته الفورية هنا.
+    </div>`;
+    return;
+  }
+
+  wrap.innerHTML = `
+    <table class="resp-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>التاريخ والوقت</th>
+          <th>الاستبانة / المقرر</th>
+          <th>الشطر</th>
+          <th>المستوى / التصنيف</th>
+          <th>المتوسط (من 5)</th>
+          <th>نسبة الرضا</th>
+          <th>المقترحات</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${resps.map((r, i) => `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${formatArabicDateTime(r.timestamp)}</td>
+            <td style="text-align:right;font-weight:700;">${r.survey_title}</td>
+            <td>${r.gender}</td>
+            <td>${r.classification}</td>
+            <td><strong>${r.avg_score}</strong></td>
+            <td><span style="background:var(--teal-light);color:var(--teal);padding:2px 8px;border-radius:999px;font-weight:800;">${r.satisfaction_pct}%</span></td>
+            <td style="text-align:right;max-width:220px;">${r.notes || '—'}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function exportResponsesCSV() {
+  const resps = getSavedResponses();
+  if (!resps.length) { alert("لا توجد ردود لتصديرها."); return; }
+  const headers = ["رقم الرد", "التاريخ", "الفصل الدراسي", "رقم الاستبانة", "اسم الاستبانة", "الفئة", "الشطر", "التصنيف", "كود المقرر", "المستوى", "المقرر", "المتوسط من 5", "نسبة الرضا %", "المقترحات", "تفاصيل البنود"];
+  const rows = resps.map(r => [
+    r.response_id,
+    r.timestamp,
+    r.term,
+    r.survey_seq,
+    `"${(r.survey_title || '').replace(/"/g, '""')}"`,
+    `"${(r.category || '').replace(/"/g, '""')}"`,
+    r.gender,
+    `"${(r.classification || '').replace(/"/g, '""')}"`,
+    r.course_code || '',
+    r.course_level || '',
+    `"${(r.course_name || '').replace(/"/g, '""')}"`,
+    r.avg_score,
+    r.satisfaction_pct,
+    `"${(r.notes || '').replace(/"/g, '""')}"`,
+    `"${r.answers.map(a => `س${a.q_index}=${a.score}`).join(' | ')}"`
+  ]);
+  const csv = "\uFEFF" + [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "ردود_استبانات_برنامج_الفيزياء_القنفذة_خطة47.csv";
+  a.click();
+}
+
+function exportResponsesJSON() {
+  const resps = getSavedResponses();
+  if (!resps.length) { alert("لا توجد ردود لتصديرها."); return; }
+  const blob = new Blob([JSON.stringify(resps, null, 2)], { type: "application/json;charset=utf-8;" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "ردود_استبانات_برنامج_الفيزياء_القنفذة_خطة47.json";
+  a.click();
+}
+
+function clearAllResponses() {
+  if (confirm("هل أنت متأكد من مسح جميع الردود المخزنة محلياً؟")) {
+    localStorage.removeItem(STORAGE_RESP_KEY);
+    renderResponsesView();
+    renderDirectory();
+  }
+}
+
+/* ---------------- Initialization & URL Direct Routing ---------------- */
+renderDedicatedCategoryLinksHub();
+initAdminInputs();
+updateScheduleBanner();
+setInterval(updateScheduleBanner, 1000);
+
+const urlParams = new URLSearchParams(window.location.search);
+const paramCat = urlParams.get('cat');
+if (paramCat) {
+  currentCategory = paramCat;
+}
+const paramLevel = urlParams.get('level');
+if (paramLevel) {
+  currentLevelFilter = paramLevel;
+}
+
+renderDirectory();
+
+const directCourse = urlParams.get('c') || urlParams.get('course');
+const directQ = urlParams.get('q') || urlParams.get('survey');
+
+if (directCourse) {
+  openCourseEvaluationForm(directCourse);
+} else if (directQ) {
+  const found = SURVEYS.find(s => String(s.seq) === String(directQ) || s.id === directQ);
+  if (found) openSurveyForm(found.id);
+}
+</script>
+</body>
+</html>
